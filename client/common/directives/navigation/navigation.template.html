@@ -1,0 +1,54 @@
+<md-toolbar class="md-hue-2">
+    <div class="md-toolbar-tools md-whiteframe-4dp">
+        <md-button class="md-icon-button" aria-label="Navigation">
+            <md-icon class="material-icons" ng-click="toggleSidenav()">menu</md-icon>
+        </md-button>
+        <h2>
+            <span>Devcamp.io</span>
+        </h2>
+        <span flex></span>
+        <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="toggleUsernav()">
+            <md-icon class="material-icons" md-menu-origin>account_circle</md-icon>
+        </md-button>
+    </div>
+</md-toolbar>
+
+<md-sidenav
+        class="md-sidenav-right"
+        md-whiteframe="4"
+        md-component-id="userNav">
+
+    <md-toolbar>
+        <h1 class="md-toolbar-tools">Jackson Yeager</h1>
+    </md-toolbar>
+    <md-content>
+        <md-list flex>
+            <md-list-item class="md-2-line" ng-repeat="item in userNav" ng-href="{{item.path}}" ng-click="closeNav()">
+                <md-icon class="material-icons">{{item.icon}}</md-icon>
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{ item.location }}</h3>
+                </div>
+            </md-list-item>
+        </md-list>
+    </md-content>
+</md-sidenav>
+
+<md-sidenav
+        class="md-sidenav-left"
+        md-whiteframe="4"
+        md-component-id="navigation">
+
+    <md-toolbar>
+        <h1 class="md-toolbar-tools">Navigation</h1>
+    </md-toolbar>
+    <md-content>
+        <md-list flex>
+            <md-list-item class="md-2-line" ng-repeat="item in nav" ng-href="{{item.path}}" ng-click="closeNav()">
+                <md-icon class="material-icons">{{item.icon}}</md-icon>
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{ item.location }}</h3>
+                </div>
+            </md-list-item>
+        </md-list>
+    </md-content>
+</md-sidenav>

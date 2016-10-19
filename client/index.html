@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Devcamp.io</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body ng-app="devcamp">
+
+<div layout="column" layout-fill>
+    <navigation></navigation>
+
+    <md-content flex>
+        <div ng-view="" autoscroll="true"></div>
+    </md-content>
+</div>
+
+
+<script src="/angular/angular.js"></script>
+<script src="/angular-animate/angular-animate.js"></script>
+<script src="/angular-aria/angular-aria.js"></script>
+<script src="/angular-messages/angular-messages.js"></script>
+<script src="/angular-route/angular-route.js"></script>
+<script src="/angular-material/angular-material.js"></script>
+
+
+<!--Main App-->
+<script src="devcamp.io.js"></script>
+
+<!--Controllers-->
+<script src="home/home.controller.js"></script>
+<script src="common/directives/navigation/navigation.controller.js"></script>
+
+<!--Directives-->
+<script src="common/directives/navigation/navigation.directive.js"></script>
+
+<!--Services-->
+</body>
+</html>
