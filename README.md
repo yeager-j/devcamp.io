@@ -1,5 +1,5 @@
 # Devcamp.io
-A game of Connect Four written using the MEAN Stack.
+A forum and blog software written in the MEAN Stack.
 
 ## Techologies
 - **MongoDB**: MongoDB is used for storing users, threads, replies, blogs, etc. MongoDB is the obvious choice when working with Node.js
