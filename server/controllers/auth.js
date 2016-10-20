@@ -1,6 +1,7 @@
 var passport = require('passport');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var School = mongoose.model('School');
 var jwt = require('jsonwebtoken');
 var config = require('../config/config');
 
@@ -93,13 +94,13 @@ module.exports.schoolRegister = function (req, res) {
         school.city = req.body.city;
         school.state = req.body.state;
         school.description = req.body.description;
-        school.motto = req.body.motto;    
+        school.motto = req.body.motto;
         school.setPassword(req.body.password);
 
         school.save(function (err) {
             if (err){
                 res.status(500);
-                res.json({'message': })
+                res.json({'message': 'Poopy pants'})
             }
             var token;
             token = user.generateJwt();
@@ -109,4 +110,4 @@ module.exports.schoolRegister = function (req, res) {
             });
         });
     }
-}); 
+};

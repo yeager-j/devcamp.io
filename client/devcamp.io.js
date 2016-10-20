@@ -33,6 +33,12 @@
             .backgroundPalette('grey');
     }
 
+    mainController.$indect = ['$scope', 'authentication'];
+    function mainController($scope, authentication) {
+        $scope.user = {};
+        authentication.getUser('5809305c0c44ee79f71b2e7a');
+    }
+
     angular
         .module('devcamp')
         .config(['$routeProvider', '$mdThemingProvider', config]);

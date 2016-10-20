@@ -17,6 +17,21 @@
             $window.localStorage.removeItem('mean-token')
         };
 
+        var isLoggedIn = function () {
+            var token = getToken();
+            var payload;
+
+            if (token) {
+                payload = token.split('.')[1];
+                payload = $window.atob(payload);
+                payload = JSON.parse(payload);
+
+                return payload.exp > Date.now() / 1000;
+            } else {
+                return false;
+            }
+        };
+
         function register(user) {
             console.log(user);
 
@@ -34,9 +49,16 @@
             })
         }
 
+        function getUser(uid) {
+            return $http.get('/api/get_user/' + uid).then(function (response) {
+                console.log(response.data.user);
+            })
+        }
+
         return {
             register: register,
-            login: login
+            login: login,
+            getUser: getUser
         }
     }
 
