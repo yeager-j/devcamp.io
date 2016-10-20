@@ -70,19 +70,30 @@ module.exports.login = function (req, res) {
                 });
                 console.log(token);
             } else {
-                sendJSONresponse(res, 401, {info});
+                res.status(401).json(info);
             }
         })(req, res);
     }
 };
 
 module.exports.getUser = function (req, res) {
-    User.findByID(req.params.id, function(err, user){
+
+    User.findOne({_id: req.params.id}, function (err, user) {
+        console.log(user);
+
         if(user){
-            sendJSONresponse(res, 200, user);
+            sendJSONresponse(res, 200, {
+                username: user.username,
+                email: user.email,
+                avatar: user.avatar,
+                school: user.school,
+                userType: user.usertype,
+                state: user.state,
+                fullname: user.fullname
+            });
         }
     });
-}
+};
 
 module.exports.schoolRegister = function (req, res) {
     if (!req.body.schoolname || !req.body.city || !req.body.state) {
