@@ -18,5 +18,6 @@ router.post('/register', userAuth.register);
 router.post('/login', userAuth.login);
 router.post('/schoolRegister', userAuth.login);
 
+router.get('/getUser/:id', userAuth.getUser);
 
 module.exports = router;
