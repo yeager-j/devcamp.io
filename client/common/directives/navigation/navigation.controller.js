@@ -8,10 +8,6 @@
             $mdSidenav('navigation').toggle();
         };
 
-        $scope.closeNav = function () {
-            $mdSidenav('navigation').close();
-        };
-
         $scope.toggleUsernav = function () {
             $mdSidenav('userNav').toggle();
         };

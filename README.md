@@ -16,6 +16,10 @@ A forum and blog software written in the MEAN Stack.
 
 - **AJAX**: AJAX will handle POST and GET requests to and from the server so that the page isn't reloaded every time the user makes a post.
 
+- **D3**: A canvas/SVG framework for JavaScript for easily implementing visual representations of information. We're using it to display information about schools such as hours, attendance, costs, salary upon graduation, and time looking for a job.
+
+- **Ionic**: A wrapper for web languages that allows them to be run as native mobile applications. We will be using Ionic to create an app for users who prefer a mobile experience.
+
 
 ## Concept
 Coding bootcamps are becoming extremely popular. Lots of students are beginning to turn to these programs instead of college because they are cheaper and usually more immersive. This website serves as a community where students and instructors alike can have a real conversation.
