@@ -14,6 +14,8 @@
         });
 
         $scope.register = function () {
+            $scope.user.userType = JSON.parse($scope.user.type).text;
+
             authentication.register($scope.user)
                 .then(function () {
                     $location.path('/');

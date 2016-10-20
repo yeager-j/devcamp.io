@@ -18,6 +18,8 @@
         };
 
         function register(user) {
+            console.log(user);
+
             return $http.post('/api/register', user).then(function (response) {
                 saveToken(response.data.token);
                 $route.reload();
