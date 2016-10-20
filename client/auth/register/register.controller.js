@@ -3,8 +3,8 @@
  */
 
 (function () {
-    registerController.$inject = ['$scope', '$location', 'authentication'];
-    function registerController($scope, $location, authentication) {
+    registerController.$inject = ['$scope', '$location', 'authentication', '$mdToast'];
+    function registerController($scope, $location, authentication, $mdToast) {
         $scope.user = {};
 
         $scope.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
@@ -19,6 +19,11 @@
             authentication.register($scope.user)
                 .then(function () {
                     $location.path('/');
+                    $mdToast.show(
+                        $mdToast.simple()
+                            .textContent('You have successfully registered!')
+                            .hideDelay(3000)
+                    )
                 })
         };
 

@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 
 require('./server/config/passport');
+require('./server/models/schoolModel');
 
 var routesApi = require('./server/routes/index');
 

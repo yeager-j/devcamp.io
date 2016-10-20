@@ -1,6 +1,7 @@
 var passport = require('passport');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var School = mongoose.model('School');
 var jwt = require('jsonwebtoken');
 var config = require('../config/config');
 
@@ -100,4 +101,4 @@ module.exports.schoolRegister = function (req, res) {
             });
         });
     }
-}); 
+};
