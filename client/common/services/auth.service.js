@@ -50,7 +50,7 @@
         }
 
         function getUser(uid) {
-            return $http.get('/api/get_user/' + uid).then(function (response) {
+            return $http.get('/api/getUser/' + uid).then(function (response) {
                 console.log(response.data.user);
             })
         }

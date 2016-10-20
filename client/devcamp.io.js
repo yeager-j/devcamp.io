@@ -36,10 +36,12 @@
     mainController.$indect = ['$scope', 'authentication'];
     function mainController($scope, authentication) {
         $scope.user = {};
+        console.log("fuck");
         authentication.getUser('5809305c0c44ee79f71b2e7a');
     }
 
     angular
         .module('devcamp')
+        .controller('mainCtrl', mainController)
         .config(['$routeProvider', '$mdThemingProvider', config]);
 })();

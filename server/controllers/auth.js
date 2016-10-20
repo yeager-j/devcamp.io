@@ -71,19 +71,24 @@ module.exports.login = function (req, res) {
                 });
                 console.log(token);
             } else {
-                sendJSONresponse(res, 401, {info});
+                res.status(401).json(info);
             }
         })(req, res);
     }
 };
 
 module.exports.getUser = function (req, res) {
-    User.findByID(req.params.id, function(err, user){
+    console.log(req.params.id);
+
+    User.findOne({_id: req.params.id}, function (err, user) {
+        console.log(err);
+        console.log(user);
+
         if(user){
             sendJSONresponse(res, 200, user);
         }
     });
-}
+};
 
 module.exports.schoolRegister = function (req, res) {
     if (!req.body.schoolname || !req.body.city || !req.body.state) {
