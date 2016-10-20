@@ -16,6 +16,11 @@
                 controller: 'registerCtrl'
             })
 
+            .when('/login', {
+                templateUrl: '/auth/login/login.view.html',
+                controller: 'loginCtrl'
+            })
+
             .otherwise({
                 redirectTo: '/'
             });

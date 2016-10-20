@@ -37,6 +37,16 @@
 
         $scope.userNav = [
             {
+                icon: 'exit_to_app',
+                location: 'Login',
+                path: '#/login'
+            },
+            {
+                icon: 'person_add',
+                location: 'Register',
+                path: '#/register'
+            },
+            {
                 icon: 'person',
                 location: 'Your Profile',
                 path: '#/'

@@ -26,8 +26,17 @@
             })
         }
 
+        function login(user) {
+            return $http.post('/api/login', user).then(function (response) {
+                console.log(response);
+                saveToken(response.data.token);
+                $route.reload();
+            })
+        }
+
         return {
-            register: register
+            register: register,
+            login: login
         }
     }
 

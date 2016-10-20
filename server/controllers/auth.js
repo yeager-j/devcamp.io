@@ -19,38 +19,36 @@ module.exports.register = function (req, res) {
             if (userInfo){
                 res.status(500);
                 res.json({'message': 'Email already registered'});
-                return;
-            }
-        });
-        User.findOne({'username': req.body.username}, function(err, userInfo){
-            if (userInfo){
-                res.status(500);
-                res.json({'message': 'Username already registered'});
-                return;
-            }
-        });
-        var user = new User();
-        user.username = req.body.username;
-        user.fullname = req.body.fullname;
-        user.email = req.body.email;
-        user.state = req.body.state;
-        user.usertype = req.body.userType;
-        user.school = -1;
-        user.avatar = '';    
-        user.setPassword(req.body.password);
+            } else {
+                User.findOne({'username': req.body.username}, function (err, userInfo) {
+                    if (userInfo) {
+                        res.status(500);
+                        res.json({'message': 'Username already registered'});
+                    } else {
+                        var user = new User();
+                        user.username = req.body.username;
+                        user.fullname = req.body.fullname;
+                        user.email = req.body.email;
+                        user.state = req.body.state;
+                        user.usertype = req.body.userType;
+                        user.school = -1;
+                        user.avatar = '';
+                        user.setPassword(req.body.password);
 
-        user.save(function (err) {
-            var token;
-            token = user.generateJwt();
-            res.status(200);
-            res.json({
-                token: token
-            });
+                        user.save(function (err) {
+                            var token;
+                            token = user.generateJwt();
+                            res.status(200);
+                            res.json({
+                                token: token
+                            });
+                        });
+                    }
+                });
+            }
         });
     }
 };
-
-    
 
 
 module.exports.login = function (req, res) {
@@ -66,6 +64,7 @@ module.exports.login = function (req, res) {
             } else if (user) {
                 token = user.generateJwt();
                 res.status(200);
+                console.log(token);
                 res.json({
                     token: token
                 });

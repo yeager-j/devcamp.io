@@ -15,6 +15,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/register', userAuth.register);
+router.post('/login', userAuth.login);
 
 
 module.exports = router;
