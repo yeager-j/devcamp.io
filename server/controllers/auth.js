@@ -60,7 +60,7 @@ module.exports.login = function (req, res) {
         passport.authenticate('local', function (err, user, info) {
             var token;
             if (err) {
-                res.status(404).json(err);
+                res.status(404).json('message': 'Error!');
             } else if (user) {
                 token = user.generateJwt();
                 res.status(200);
@@ -94,18 +94,9 @@ module.exports.schoolRegister = function (req, res) {
         school.state = req.body.state;
         school.description = req.body.description;
         school.motto = req.body.motto;    
-        school.setPassword(req.body.password);
-
         school.save(function (err) {
-            if (err){
-                res.status(500);
-                res.json({'message': })
-            }
-            var token;
-            token = user.generateJwt();
-            res.status(200);
-            res.json({
-                token: token
+            sendJSONresponse(res, 200, {
+                'message': 'School Successfully Added!  Good job buddy!'
             });
         });
     }

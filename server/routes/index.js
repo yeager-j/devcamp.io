@@ -16,6 +16,7 @@ router.get('/', function (req, res, next) {
 
 router.post('/register', userAuth.register);
 router.post('/login', userAuth.login);
+router.post('/schoolRegister', userAuth.login);
 
 
 module.exports = router;
