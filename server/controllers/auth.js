@@ -74,3 +74,39 @@ module.exports.login = function (req, res) {
         })(req, res);
     }
 };
+
+module.exports.schoolRegister = function (req, res) {
+    if (!req.body.schoolname || !req.body.city || !req.body.state) {
+        sendJSONresponse(res, 400, {
+            "message": "All fields required!"
+        });
+    }else{
+        User.findOne({'schoolname': req.body.schoolname, 'city': req.body.city, state: req.body.state}, function(err, userInfo){
+            if (userInfo){
+                sendJSONresponse(res, 500, {
+                    "message": "This school at this location is already registered!"
+                });
+            }
+        });
+        var school = new School();
+        school.schoolname = req.body.schoolname;
+        school.city = req.body.city;
+        school.state = req.body.state;
+        school.description = req.body.description;
+        school.motto = req.body.motto;    
+        school.setPassword(req.body.password);
+
+        school.save(function (err) {
+            if (err){
+                res.status(500);
+                res.json({'message': })
+            }
+            var token;
+            token = user.generateJwt();
+            res.status(200);
+            res.json({
+                token: token
+            });
+        });
+    }
+}); 
