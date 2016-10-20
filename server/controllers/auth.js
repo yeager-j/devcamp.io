@@ -1,6 +1,6 @@
 var passport = require('passport');
 var mongoose = require('mongoose');
-var user = mongoose.model('User');
+var User = mongoose.model('User');
 var jwt = require('jsonwebtoken');
 var config = require('../config/auth');
 
@@ -15,6 +15,20 @@ module.exports.register = function (req, res) {
             "message": "All fields required"
         });
     }else{
+        User.findOne({'email': req.body.email}, function(err, userInfo){
+            if (userInfo){
+                res.status(500);
+                res.json({'message': 'Email already registered'});
+                return;
+            }
+        });
+        User.findOne({'username': req.body.username}, function(err, userInfo){
+            if (userInfo){
+                res.status(500);
+                res.json({'message': 'Username already registered'});
+                return;
+            }
+        });
         var user = new User();
         user.username = req.body.username;
         user.fullname = req.body.fullname;
@@ -26,6 +40,10 @@ module.exports.register = function (req, res) {
         user.setPassword(req.body.password);
 
         user.save(function (err) {
+            if (err){
+                res.status(500);
+                res.json({'message': })
+            }
             var token;
             token = user.generateJwt();
             res.status(200);
@@ -34,36 +52,28 @@ module.exports.register = function (req, res) {
             });
         });
     }
-});
-
-    
+}); 
 
 
 module.exports.login = function (req, res) {
-
     if (!req.body.email || !req.body.password) {
         sendJSONresponse(res, 400, {
             "message": "All fields required"
         });
-        return;
+    }else{
+        passport.authenticate('local', function (err, user, info) {
+            var token;
+            if (err) {
+                res.status(404).json(err);
+            } else if (user) {
+                token = user.generateJwt();
+                res.status(200);
+                res.json({
+                    token: token
+                });
+            } else {
+                res.status(401).json(info);
+            }
+        })(req, res);
     }
-
-    passport.authenticate('local', function (err, user, info) {
-        var token;
-
-        if (err) {
-            res.status(404).json(err);
-            return;
-        }
-
-        if (user) {
-            token = user.generateJwt();
-            res.status(200);
-            res.json({
-                token: token
-            });
-        } else {
-            res.status(401).json(info);
-        }
-    })(req, res);
 };
