@@ -61,23 +61,24 @@ module.exports.login = function (req, res) {
         passport.authenticate('local', function (err, user, info) {
             var token;
             if (err) {
-                res.status(404).json('message': 'Error!');
+                sendJSONresponse(res, 404, {
+                    'message': 'Error!'
+                });
             } else if (user) {
                 token = user.generateJwt();
-                res.status(200);
-                console.log(token);
-                res.json({
+                sendJSONresponse(res, 200, {
                     token: token
                 });
+                console.log(token);
             } else {
-                res.status(401).json(info);
+                sendJSONresponse(res, 401, {info});
             }
         })(req, res);
     }
 };
 
 module.exports.getUser = function (req, res) {
-    User.findOneByID(req.params.id, function(err, user){
+    User.findByID(req.params.id, function(err, user){
         if(user){
             sendJSONresponse(res, 200, user);
         }
