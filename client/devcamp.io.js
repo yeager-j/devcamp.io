@@ -11,14 +11,19 @@
                 controller: 'homeCtrl'
             })
 
+            .when('/register', {
+                templateUrl: '/auth/register/register.view.html',
+                controller: 'registerCtrl'
+            })
+
             .otherwise({
                 redirectTo: '/'
             });
 
         $mdThemingProvider
             .theme('default')
-            .primaryPalette('teal')
-            .accentPalette('cyan')
+            .primaryPalette('indigo')
+            .accentPalette('pink')
             .warnPalette('red')
             .backgroundPalette('grey');
     }

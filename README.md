@@ -35,6 +35,8 @@ If you'd like to spin up your own server, follow these instructions:
 
 `npm install`
 
+`bower install`
+
 `node bin/www`
 
 Open your browser and connect to `http://localhost:3000`
