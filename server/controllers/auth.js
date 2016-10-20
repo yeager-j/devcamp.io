@@ -51,7 +51,6 @@ module.exports.register = function (req, res) {
     }
 };
 
-
 module.exports.login = function (req, res) {
     if (!req.body.email || !req.body.password) {
         sendJSONresponse(res, 400, {
@@ -96,18 +95,19 @@ module.exports.schoolRegister = function (req, res) {
                 sendJSONresponse(res, 500, {
                     "message": "This school at this location is already registered!"
                 });
+            } else {
+                var school = new School();
+                school.schoolname = req.body.schoolname;
+                school.city = req.body.city;
+                school.state = req.body.state;
+                school.description = req.body.description;
+                school.motto = req.body.motto;    
+                school.save(function (err) {
+                    sendJSONresponse(res, 200, {
+                        'message': 'School Successfully Added!  Good job buddy!'
+                    });
+                });
             }
-        });
-        var school = new School();
-        school.schoolname = req.body.schoolname;
-        school.city = req.body.city;
-        school.state = req.body.state;
-        school.description = req.body.description;
-        school.motto = req.body.motto;    
-        school.save(function (err) {
-            sendJSONresponse(res, 200, {
-                'message': 'School Successfully Added!  Good job buddy!'
-            });
         });
     }
 };

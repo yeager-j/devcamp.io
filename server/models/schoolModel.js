@@ -18,7 +18,6 @@ var schoolSchema = new mongoose.Schema({
     logo: String,
     faculty: Array,
     students: Array
-
 });
 
 
