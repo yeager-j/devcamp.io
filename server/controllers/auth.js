@@ -78,7 +78,10 @@ module.exports.login = function (req, res) {
 };
 
 module.exports.getUser = function (req, res) {
+
     User.findOne({_id: req.params.id}, function (err, user) {
+        console.log(user);
+
         if(user){
             sendJSONresponse(res, 200, {
                 username: user.username,

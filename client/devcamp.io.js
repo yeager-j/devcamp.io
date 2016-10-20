@@ -21,6 +21,13 @@
                 controller: 'loginCtrl'
             })
 
+            .when('/profile', {
+                templateUrl: '/profile/profile.view.html',
+                controller: 'profileCtrl'
+            })
+
+            .when('/profile/:id', {})
+
             .otherwise({
                 redirectTo: '/'
             });

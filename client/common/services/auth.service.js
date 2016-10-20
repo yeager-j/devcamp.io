@@ -17,20 +17,38 @@
             $window.localStorage.removeItem('mean-token')
         };
 
-        var isLoggedIn = function () {
+        function isLoggedIn() {
             var token = getToken();
             var payload;
+
+            console.log(token);
 
             if (token) {
                 payload = token.split('.')[1];
                 payload = $window.atob(payload);
                 payload = JSON.parse(payload);
+                console.log(payload.exp > Date.now() / 1000);
 
                 return payload.exp > Date.now() / 1000;
             } else {
                 return false;
             }
-        };
+        }
+
+        function uuid() {
+            console.log("fuck my ass");
+
+            if (isLoggedIn()) {
+                var token = getToken();
+                var payload = token.split('.')[1];
+                payload = $window.atob(payload);
+                payload = JSON.parse(payload);
+                console.log(payload);
+                return {
+                    uuid: payload._id
+                };
+            }
+        }
 
         function register(user) {
             console.log(user);
@@ -50,15 +68,15 @@
         }
 
         function getUser(uid) {
-            return $http.get('/api/getUser/' + uid).then(function (response) {
-                console.log(response.data.user);
-            })
+            return $http.get('/api/get_user/' + uid);
         }
 
         return {
             register: register,
             login: login,
-            getUser: getUser
+            getUser: getUser,
+            uuid: uuid,
+            isLoggedIn: isLoggedIn
         }
     }
 
