@@ -78,14 +78,17 @@ module.exports.login = function (req, res) {
 };
 
 module.exports.getUser = function (req, res) {
-    console.log(req.params.id);
-
     User.findOne({_id: req.params.id}, function (err, user) {
-        console.log(err);
-        console.log(user);
-
         if(user){
-            sendJSONresponse(res, 200, user);
+            sendJSONresponse(res, 200, {
+                username: user.username,
+                email: user.email,
+                avatar: user.avatar,
+                school: user.school,
+                userType: user.usertype,
+                state: user.state,
+                fullname: user.fullname
+            });
         }
     });
 };
