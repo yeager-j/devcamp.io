@@ -48,4 +48,4 @@ process.on('SIGTERM', function () {
     });
 });
 
-require('./user');
+require('./userModel');

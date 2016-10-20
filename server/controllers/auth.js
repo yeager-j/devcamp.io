@@ -2,7 +2,7 @@ var passport = require('passport');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var jwt = require('jsonwebtoken');
-var config = require('../config/auth');
+var config = require('../config/config');
 
 var sendJSONresponse = function (res, status, content) {
     res.status(status);
@@ -34,16 +34,12 @@ module.exports.register = function (req, res) {
         user.fullname = req.body.fullname;
         user.email = req.body.email;
         user.state = req.body.state;
-        user.usertype = req.body.type;
-        user.school = req.body.school;
+        user.usertype = req.body.userType;
+        user.school = -1;
         user.avatar = '';    
         user.setPassword(req.body.password);
 
         user.save(function (err) {
-            if (err){
-                res.status(500);
-                res.json({'message': })
-            }
             var token;
             token = user.generateJwt();
             res.status(200);
@@ -52,7 +48,9 @@ module.exports.register = function (req, res) {
             });
         });
     }
-}); 
+};
+
+    
 
 
 module.exports.login = function (req, res) {
