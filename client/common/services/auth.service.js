@@ -5,29 +5,26 @@
 (function () {
     authService.$inject = ['$http', '$window', '$route'];
     function authService($http, $window, $route) {
-        var saveToken = function (token) {
+        function saveToken(token) {
             $window.localStorage['mean-token'] = token;
-        };
+        }
 
-        var getToken = function () {
+        function getToken() {
             return $window.localStorage['mean-token']
-        };
+        }
 
-        var logout = function () {
+        function logout() {
+            console.log("loggin out");
             $window.localStorage.removeItem('mean-token')
-        };
+        }
 
         function isLoggedIn() {
             var token = getToken();
             var payload;
-
-            console.log(token);
-
             if (token) {
                 payload = token.split('.')[1];
                 payload = $window.atob(payload);
                 payload = JSON.parse(payload);
-                console.log(payload.exp > Date.now() / 1000);
 
                 return payload.exp > Date.now() / 1000;
             } else {
@@ -36,14 +33,11 @@
         }
 
         function uuid() {
-            console.log("fuck my ass");
-
             if (isLoggedIn()) {
                 var token = getToken();
                 var payload = token.split('.')[1];
                 payload = $window.atob(payload);
                 payload = JSON.parse(payload);
-                console.log(payload);
                 return {
                     uuid: payload._id
                 };
@@ -61,7 +55,6 @@
 
         function login(user) {
             return $http.post('/api/login', user).then(function (response) {
-                console.log(response);
                 saveToken(response.data.token);
                 $route.reload();
             })
@@ -76,7 +69,9 @@
             login: login,
             getUser: getUser,
             uuid: uuid,
-            isLoggedIn: isLoggedIn
+            isLoggedIn: isLoggedIn,
+            logout: logout,
+            getToken: getToken
         }
     }
 
