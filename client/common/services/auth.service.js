@@ -5,21 +5,21 @@
 (function () {
     authService.$inject = ['$http', '$window', '$route'];
     function authService($http, $window, $route) {
-        function saveToken(token) {
+        this.saveToken = function (token) {
             $window.localStorage['mean-token'] = token;
-        }
+        };
 
-        function getToken() {
+        this.getToken = function () {
             return $window.localStorage['mean-token']
-        }
+        };
 
-        function logout() {
+        this.logout = function () {
             console.log("loggin out");
             $window.localStorage.removeItem('mean-token')
-        }
+        };
 
-        function isLoggedIn() {
-            var token = getToken();
+        this.isLoggedIn = function () {
+            var token = this.getToken();
             var payload;
             if (token) {
                 payload = token.split('.')[1];
@@ -30,11 +30,11 @@
             } else {
                 return false;
             }
-        }
+        };
 
-        function uuid() {
-            if (isLoggedIn()) {
-                var token = getToken();
+        this.uuid = function () {
+            if (this.isLoggedIn()) {
+                var token = this.getToken();
                 var payload = token.split('.')[1];
                 payload = $window.atob(payload);
                 payload = JSON.parse(payload);
@@ -42,37 +42,29 @@
                     uuid: payload._id
                 };
             }
-        }
+        };
 
-        function register(user) {
-            console.log(user);
+        this.register = function (user) {
+            var auth = this;
 
             return $http.post('/api/register', user).then(function (response) {
-                saveToken(response.data.token);
+                auth.saveToken(response.data.token);
                 $route.reload();
             })
-        }
+        };
 
-        function login(user) {
+        this.login = function (user) {
+            var auth = this;
+
             return $http.post('/api/login', user).then(function (response) {
-                saveToken(response.data.token);
+                auth.saveToken(response.data.token);
                 $route.reload();
             })
-        }
+        };
 
-        function getUser(uid) {
+        this.getUser = function (uid) {
             return $http.get('/api/get_user/' + uid);
-        }
-
-        return {
-            register: register,
-            login: login,
-            getUser: getUser,
-            uuid: uuid,
-            isLoggedIn: isLoggedIn,
-            logout: logout,
-            getToken: getToken
-        }
+        };
     }
 
     angular.module('devcamp')

@@ -15,9 +15,9 @@ module.exports.register = function (req, res) {
         sendJSONresponse(res, 400, {
             "message": "All fields required"
         });
-    }else{
-        User.findOne({'email': req.body.email}, function(err, userInfo){
-            if (userInfo){
+    } else {
+        User.findOne({'email': req.body.email}, function (err, userInfo) {
+            if (userInfo) {
                 res.status(500);
                 res.json({'message': 'Email already registered'});
             } else {
@@ -56,7 +56,7 @@ module.exports.login = function (req, res) {
         sendJSONresponse(res, 400, {
             "message": "All fields required"
         });
-    }else{
+    } else {
         passport.authenticate('local', function (err, user, info) {
             var token;
             if (err) {
@@ -68,7 +68,6 @@ module.exports.login = function (req, res) {
                 sendJSONresponse(res, 200, {
                     token: token
                 });
-                console.log(token);
             } else {
                 res.status(401).json(info);
             }
@@ -77,20 +76,34 @@ module.exports.login = function (req, res) {
 };
 
 module.exports.getUser = function (req, res) {
-
     User.findOne({_id: req.params.id}, function (err, user) {
-        console.log(user);
+        if (user) {
+            delete user.hash;
+            delete user.salt;
+            sendJSONresponse(res, 200, user);
+        } else {
+            User.findOne({username: req.params.id}, function (err, user) {
+                if (user) {
+                    var document = user;
 
-        if(user){
-            sendJSONresponse(res, 200, {
-                username: user.username,
-                email: user.email,
-                avatar: user.avatar,
-                school: user.school,
-                userType: user.usertype,
-                state: user.state,
-                fullname: user.fullname
-            });
+                    delete document['hash'];
+                    delete document['salt'];
+                    console.log(document);
+                    sendJSONresponse(res, 200, user)
+                } else {
+                    User.findOne({email: req.params.id}, function (err, user) {
+                        if (user) {
+                            delete user.hash;
+                            delete user.salt;
+                            sendJSONresponse(res, 200, user)
+                        } else {
+                            sendJSONresponse(res, 404, {
+                                message: "User not found."
+                            })
+                        }
+                    })
+                }
+            })
         }
     });
 };
@@ -100,9 +113,13 @@ module.exports.schoolRegister = function (req, res) {
         sendJSONresponse(res, 400, {
             "message": "All fields required!"
         });
-    }else{
-        User.findOne({'schoolname': req.body.schoolname, 'city': req.body.city, state: req.body.state}, function(err, userInfo){
-            if (userInfo){
+    } else {
+        User.findOne({
+            'schoolname': req.body.schoolname,
+            'city': req.body.city,
+            state: req.body.state
+        }, function (err, userInfo) {
+            if (userInfo) {
                 sendJSONresponse(res, 500, {
                     "message": "This school at this location is already registered!"
                 });
@@ -112,7 +129,7 @@ module.exports.schoolRegister = function (req, res) {
                 school.city = req.body.city;
                 school.state = req.body.state;
                 school.description = req.body.description;
-                school.motto = req.body.motto;    
+                school.motto = req.body.motto;
                 school.save(function (err) {
                     sendJSONresponse(res, 200, {
                         'message': 'School Successfully Added!  Good job buddy!'

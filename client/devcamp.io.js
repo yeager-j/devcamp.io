@@ -21,12 +21,10 @@
                 controller: 'loginCtrl'
             })
 
-            .when('/profile', {
+            .when('/profile/:user', {
                 templateUrl: '/profile/profile.view.html',
                 controller: 'profileCtrl'
             })
-
-            .when('/profile/:id', {})
 
             .otherwise({
                 redirectTo: '/'

@@ -3,18 +3,13 @@
  */
 
 (function () {
-    profileController.$inject = ['$scope', 'authentication', '$location'];
-    function profileController($scope, authentication, $location) {
-        if (!authentication.isLoggedIn()) {
-            $location.path('/');
-        } else {
-            $scope.user = {};
+    profileController.$inject = ['$scope', 'fetchUser', '$location', '$routeParams'];
+    function profileController($scope, fetchUser, $location, $routeParams) {
+        $scope.user = {};
 
-            authentication.getUser(authentication.uuid().uuid)
-                .then(function (response) {
-                    $scope.user = response.data;
-                })
-        }
+        fetchUser.getUser($routeParams.user, function (response) {
+            $scope.user = response;
+        })
     }
 
     angular.module('devcamp')

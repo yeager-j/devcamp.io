@@ -19,7 +19,7 @@
 
         $scope.logout = function () {
             authentication.logout();
-            $route.reload();
+            $location.path('/');
             $mdToast.show(
                 $mdToast.simple()
                     .textContent('You have successfully logged out.')
@@ -37,7 +37,7 @@
                 $scope.userNav.push({
                         icon: 'person',
                         location: 'Your Profile',
-                        path: '#/'
+                        path: '#/profile/' + $scope.user.username
                     },
                     {
                         icon: 'settings',
@@ -48,7 +48,12 @@
                         icon: 'dashboard',
                         location: 'Admin Panel',
                         path: '#/blogs'
-                    })
+                    });
+
+                fetchUser.getCurrentUser(function (user) {
+                    $scope.user = user;
+                    $scope.userNav[0].path = '#/profile/' + $scope.user.username;
+                })
             } else {
                 $scope.userNav = [];
                 $scope.userNav.push({
@@ -60,14 +65,8 @@
                         icon: 'person_add',
                         location: 'Register',
                         path: '#/register'
-                    })
-            }
+                    });
 
-            if (authentication.isLoggedIn()) {
-                fetchUser.getCurrentUser(function (user) {
-                    $scope.user = user;
-                })
-            } else {
                 $scope.user = {
                     username: 'Guest'
                 }

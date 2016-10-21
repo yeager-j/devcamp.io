@@ -7,17 +7,12 @@ var auth = jwt({
     userProperty: 'payload'
 });
 
-var auth = require('../controllers/auth');
+var userAuth = require('../controllers/auth');
 
-/* GET home page. */
-router.get('/', function (req, res, next) {
-    res.render('index', {title: 'Express'});
-});
+router.post('/register', userAuth.register);
+router.post('/login', userAuth.login);
+router.post('/schoolRegister', userAuth.schoolRegister);
 
-router.post('/register', auth.register);
-router.post('/login', auth.login);
-router.post('/schoolRegister', auth.schoolRegister);
-
-router.get('/get_user/:id', auth.getUser);
+router.get('/get_user/:id', userAuth.getUser);
 
 module.exports = router;

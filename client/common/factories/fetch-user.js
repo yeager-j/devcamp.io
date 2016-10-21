@@ -3,11 +3,16 @@
  */
 
 (function () {
-    fetchUser.$inject = ['$http', 'authentication'];
-    function fetchUser($http, authentication) {
-        function getUserById(uuid, callback) {
+    fetchUser.$inject = ['authentication'];
+    function fetchUser(authentication) {
+        function getUser(uuid, callback) {
             authentication.getUser(uuid).then(function (response) {
                 callback(response.data);
+            }, function (response) {
+                callback({
+                    username: 'Four oh four!',
+                    fullname: 'This user cannot be found. Sorry!'
+                })
             })
         }
 
@@ -22,7 +27,7 @@
         }
 
         return {
-            getUserById: getUserById,
+            getUser: getUser,
             getCurrentUser: getCurrentUser
         }
     }
