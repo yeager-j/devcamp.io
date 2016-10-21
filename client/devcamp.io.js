@@ -26,6 +26,11 @@
                 controller: 'profileCtrl'
             })
 
+            .when('/graphs', {
+                templateUrl: '/graphs/graphs.view.html',
+                controller: 'graphsCtrl'
+            })
+
             .otherwise({
                 redirectTo: '/'
             });
