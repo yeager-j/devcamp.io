@@ -65,7 +65,7 @@ module.exports.register = function (req, res) {
                                 }
                             },
                             {
-                                value: req.body.usertype,
+                                value: req.body.userType,
                                 checks: {
                                     required: true,
                                     matches: ('Prospective Student,Student,Alumni,Instructor,Employer,Recruiter,Other').split(',')
@@ -88,7 +88,7 @@ module.exports.register = function (req, res) {
                             user.fullname = req.body.fullname;
                             user.email = req.body.email;
                             user.state = req.body.state;
-                            user.usertype = req.body.usertype;
+                            user.usertype = req.body.userType;
                             user.rank = 1;
                             user.school = -1;
                             user.avatar = '';
