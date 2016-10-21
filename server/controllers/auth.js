@@ -147,17 +147,14 @@ module.exports.getUser = function (req, res) {
         } else {
             User.findOne({username: req.params.id}, function (err, user) {
                 if (user) {
-                    var document = user;
-
-                    delete document['hash'];
-                    delete document['salt'];
-                    console.log(document);
+                    user.hash = '';
+                    user.salt = '';
                     sendJSONresponse(res, 200, user)
                 } else {
                     User.findOne({email: req.params.id}, function (err, user) {
                         if (user) {
-                            delete user.hash;
-                            delete user.salt;
+                            user.hash = '';
+                            user.salt = '';
                             sendJSONresponse(res, 200, user)
                         } else {
                             sendJSONresponse(res, 404, {
