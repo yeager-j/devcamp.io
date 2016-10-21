@@ -16,15 +16,22 @@
         $scope.register = function () {
             $scope.user.userType = JSON.parse($scope.user.type).text;
 
-            authentication.register($scope.user)
-                .then(function () {
+            authentication.register($scope.user, function (response) {
+                if (response.status == 200) {
                     $location.path('/');
                     $mdToast.show(
                         $mdToast.simple()
                             .textContent('You have successfully registered!')
                             .hideDelay(3000)
                     )
-                })
+                } else {
+                    $mdToast.show(
+                        $mdToast.simple()
+                            .textContent(response.data.message)
+                            .hideDelay(3000)
+                    )
+                }
+            })
         };
 
         $scope.types = [

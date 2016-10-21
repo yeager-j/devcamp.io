@@ -17,6 +17,7 @@ var userSchema = new mongoose.Schema({
     },
     state: String,
     usertype: String,
+    rank: Number,
     hash: String,
     salt: String,
     school: Number,

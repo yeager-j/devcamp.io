@@ -44,21 +44,27 @@
             }
         };
 
-        this.register = function (user) {
+        this.register = function (user, callback) {
             var auth = this;
 
             return $http.post('/api/register', user).then(function (response) {
                 auth.saveToken(response.data.token);
                 $route.reload();
+                callback(response);
+            }, function (response) {
+                callback(response);
             })
         };
 
-        this.login = function (user) {
+        this.login = function (user, callback) {
             var auth = this;
 
             return $http.post('/api/login', user).then(function (response) {
                 auth.saveToken(response.data.token);
                 $route.reload();
+                callback(response);
+            }, function (response) {
+                callback(response);
             })
         };
 

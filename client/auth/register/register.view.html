@@ -1,5 +1,5 @@
 <div layout="row" layout-align="center center" layout-margin flex>
-    <md-card flex="40" flex-xs="90">
+    <md-card flex="40" flex-sm="80" flex-xs="90">
         <md-card-title>
             <md-card-title-text>
                 <span class="md-headline">Register for Devcamp.io</span>
@@ -23,7 +23,7 @@
                     <md-input-container class="md-block" flex-gt-sm>
                         <label>Username</label>
                         <input ng-model="user.username" name="username" required ng-pattern="/^[a-zA-Z0-9_]*$/"
-                               ng-minlength="3" ng-maxlength="30">
+                               ng-minlength="3" ng-maxlength="18">
                         <div ng-messages="registerForm.username.$error">
                             <div ng-message="required">This is required.</div>
                             <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
