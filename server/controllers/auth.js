@@ -169,32 +169,82 @@ module.exports.getUser = function (req, res) {
 };
 
 module.exports.schoolRegister = function (req, res) {
-    if (!req.body.schoolname || !req.body.city || !req.body.state) {
+    if (!req.body.schoolName || !req.body.city || !req.body.state) {
         sendJSONresponse(res, 400, {
             "message": "All fields required!"
         });
     } else {
         User.findOne({
-            'schoolname': req.body.schoolname,
-            'city': req.body.city,
-            state: req.body.state
+            'schoolName': req.body.schoolName
         }, function (err, userInfo) {
             if (userInfo) {
                 sendJSONresponse(res, 500, {
-                    "message": "This school at this location is already registered!"
+                    "message": "This school is already registered!"
                 });
             } else {
-                var school = new School();
-                school.schoolname = req.body.schoolname;
-                school.city = req.body.city;
-                school.state = req.body.state;
-                school.description = req.body.description;
-                school.motto = req.body.motto;
-                school.save(function (err) {
-                    sendJSONresponse(res, 200, {
-                        'message': 'School Successfully Added!  Good job buddy!'
+                var passed = validate.validate([
+                    {
+                        value: req.body.schoolName,
+                        checks: {
+                            required: true,
+                            minlength: 3,
+                            maxlength: 60,
+                            regex: /^[a-zA-Z0-9_\s]*$/
+                        }
+                    },
+                    {
+                        value: req.body.city,
+                        checks: {
+                            required: true,
+                            minlength: 3,
+                            maxlength: 30,
+                            regex: /^[a-zA-Z0-9_\s]*$/
+                        }
+                    },
+                    {
+                        value: req.body.state,
+                        checks: {
+                            required: true,
+                            matches: ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
+                            'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
+                            'WY').split(' ')
+                        }
+                    },
+                    {
+                        value: req.body.description,
+                        checks: {
+                            required: true,
+                            minlength: 30,
+                            maxlength: 1000
+                        }
+                    }
+                ]);
+
+                if (passed) {
+                    var school = new School();
+                    school.schoolName = req.body.schoolName;
+                    school.city = req.body.city;
+                    school.state = req.body.state;
+                    school.email = req.body.email;
+                    school.description = req.body.description;
+                    school.save(function (err) {
+                        if (err) {
+                            console.log(err);
+                            sendJSONresponse(res, 500, {
+                                message: "Server error. Bad bad bad!"
+                            })
+                        } else {
+                            sendJSONresponse(res, 200, {
+                                'message': 'School Successfully Added!  Good job buddy!'
+                            });
+                        }
+
                     });
-                });
+                } else {
+                    sendJSONresponse(res, 401, {
+                        message: "Invalid input. Please don't mess with Angular's form validation."
+                    })
+                }
             }
         });
     }

@@ -11,7 +11,7 @@ var userAuth = require('../controllers/auth');
 
 router.post('/register', userAuth.register);
 router.post('/login', userAuth.login);
-router.post('/schoolRegister', userAuth.schoolRegister);
+router.post('/school_register', userAuth.schoolRegister);
 
 router.get('/get_user/:id', userAuth.getUser);
 

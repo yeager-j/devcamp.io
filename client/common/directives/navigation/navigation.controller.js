@@ -45,6 +45,11 @@
                         path: '#/forums'
                     },
                     {
+                        icon: 'school',
+                        location: 'Register a Code School',
+                        path: '#/school/register'
+                    },
+                    {
                         icon: 'dashboard',
                         location: 'Admin Panel',
                         path: '#/blogs'

@@ -14,7 +14,7 @@ var schoolSchema = new mongoose.Schema({
         required: true
     },
     description: String,
-    motto: String,
+    email: String,
     logo: String,
     faculty: Array,
     students: Array
