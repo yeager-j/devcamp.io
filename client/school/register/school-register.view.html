@@ -50,7 +50,7 @@
                         <label>City</label>
                         <input ng-model="school.city" name="city" required ng-pattern="/^[a-zA-Z0-9_]*$/"
                                ng-minlength="3" ng-maxlength="30">
-                        <div ng-messages="registerForm.username.$error">
+                        <div ng-messages="registerForm.city.$error">
                             <div ng-message="required">This is required.</div>
                             <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
                                 The city cannot contain special characters and must be greater than 3 characters

@@ -1,20 +1,137 @@
 <div layout="row" layout-align="center center">
-    <md-card flex="50" flex-sm="80" flex-xs="90">
-        <md-card-title>
-            <md-card-title-text>
-                <span class="md-headline">{{user.username}}</span>
-                <span class="md-subhead">{{user.fullname}}</span>
-                <span class="md-subhead">{{user.email}}</span>
-                <span class="md-subhead">{{user.usertype}}</span>
-            </md-card-title-text>
-            <md-card-title-media>
-                <div class="md-media-md card-media hide-xl hide-lg hide-md">
-                    <img src="http://placekitten.com/200/200">
-                </div>
-                <div class="md-media-lg card-media hide-sm hide-xs">
-                    <img src="http://placekitten.com/200/200">
-                </div>
-            </md-card-title-media>
-        </md-card-title>
-    </md-card>
+    <div flex="50" flex-sm="80" flex-xs="90">
+        <md-content>
+            <md-tabs md-border-bottom md-dynamic-height>
+                <md-tab label="you">
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">{{user.username}}</span>
+                                <span class="md-subhead">{{user.fullname}}</span>
+                                <span class="md-subhead">{{user.email}}</span>
+                                <span class="md-subhead">{{user.usertype}}</span>
+                            </md-card-title-text>
+                            <md-card-title-media>
+                                <div class="md-media-md card-media hide-xl hide-lg hide-md">
+                                    <img src="http://placekitten.com/200/200">
+                                </div>
+                                <div class="md-media-lg card-media hide-sm hide-xs">
+                                    <img src="http://placekitten.com/200/200">
+                                </div>
+                            </md-card-title-media>
+                        </md-card-title>
+                    </md-card>
+                </md-tab>
+                <md-tab label="feed">
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">Hello Post!</span>
+                                <span class="md-subhead">Posted By: Danny</span>
+                            </md-card-title-text>
+                            <md-card-title-media>
+                            </md-card-title-media>
+                        </md-card-title>
+                        <md-card-content>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam architecto, at
+                                excepturi harum magni quisquam recusandae rerum sint soluta voluptatibus! Blanditiis
+                                deleniti labore nisi omnis, praesentium quis voluptas voluptatem? Beatae...</p>
+                            <md-button class="md-primary">Read More</md-button>
+                        </md-card-content>
+                    </md-card>
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">A different post</span>
+                                <span class="md-subhead">Posted By: Danny</span>
+                            </md-card-title-text>
+                            <md-card-title-media>
+                            </md-card-title-media>
+                        </md-card-title>
+                        <md-card-content>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam architecto, at
+                                excepturi harum magni quisquam recusandae rerum sint soluta voluptatibus! Blanditiis
+                                deleniti labore nisi omnis, praesentium quis voluptas voluptatem? Beatae...</p>
+                            <md-button class="md-primary">Read More</md-button>
+                        </md-card-content>
+                    </md-card>
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">Someone help!</span>
+                                <span class="md-subhead">Posted By: Danny</span>
+                            </md-card-title-text>
+                            <md-card-title-media>
+                            </md-card-title-media>
+                        </md-card-title>
+                        <md-card-content>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam architecto, at
+                                excepturi harum magni quisquam recusandae rerum sint soluta voluptatibus! Blanditiis
+                                deleniti labore nisi omnis, praesentium quis voluptas voluptatem? Beatae...</p>
+                            <md-button class="md-primary">Read More</md-button>
+                        </md-card-content>
+                    </md-card>
+                </md-tab>
+                <md-tab label="your posts">
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">Hello Post!</span>
+                                <span class="md-subhead">Posted By: Jackson</span>
+                            </md-card-title-text>
+                            <md-card-title-media>
+                            </md-card-title-media>
+                        </md-card-title>
+                        <md-card-content>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam architecto, at
+                                excepturi harum magni quisquam recusandae rerum sint soluta voluptatibus! Blanditiis
+                                deleniti labore nisi omnis, praesentium quis voluptas voluptatem? Beatae...</p>
+                            <md-button class="md-primary">Read More</md-button>
+                            <md-button class="md-warn">Delete</md-button>
+                        </md-card-content>
+                    </md-card>
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">A different post</span>
+                                <span class="md-subhead">Posted By: Jackson</span>
+                            </md-card-title-text>
+                            <md-card-title-media>
+                            </md-card-title-media>
+                        </md-card-title>
+                        <md-card-content>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam architecto, at
+                                excepturi harum magni quisquam recusandae rerum sint soluta voluptatibus! Blanditiis
+                                deleniti labore nisi omnis, praesentium quis voluptas voluptatem? Beatae...</p>
+                            <md-button class="md-primary">Read More</md-button>
+                            <md-button class="md-warn">Delete</md-button>
+                        </md-card-content>
+                    </md-card>
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">Someone help!</span>
+                                <span class="md-subhead">Posted By: Jackson</span>
+                            </md-card-title-text>
+                            <md-card-title-media>
+                            </md-card-title-media>
+                        </md-card-title>
+                        <md-card-content>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam architecto, at
+                                excepturi harum magni quisquam recusandae rerum sint soluta voluptatibus! Blanditiis
+                                deleniti labore nisi omnis, praesentium quis voluptas voluptatem? Beatae...</p>
+                            <md-button class="md-primary">Read More</md-button>
+                            <md-button class="md-warn">Delete</md-button>
+                        </md-card-content>
+                    </md-card>
+                </md-tab>
+                <md-tab label="your school">
+                    <md-content class="md-padding">
+                        <h1 class="md-display-2">Tab Three</h1>
+
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+    </div>
 </div>

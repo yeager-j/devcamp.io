@@ -31,6 +31,11 @@
                 controller: 'profileCtrl'
             })
 
+            .when('/members', {
+                templateUrl: '/members/members.view.html',
+                controller: 'membersCtrl'
+            })
+
             .when('/graphs', {
                 templateUrl: '/graphs/graphs.view.html',
                 controller: 'graphsCtrl'

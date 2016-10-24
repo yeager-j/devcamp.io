@@ -26,9 +26,16 @@
             }
         }
 
+        function getAllUsers(callback) {
+            authentication.getUsers().then(function (response) {
+                callback(response.data);
+            })
+        }
+
         return {
             getUser: getUser,
-            getCurrentUser: getCurrentUser
+            getCurrentUser: getCurrentUser,
+            getAllUsers: getAllUsers
         }
     }
 

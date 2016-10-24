@@ -7,12 +7,17 @@ var auth = jwt({
     userProperty: 'payload'
 });
 
-var userAuth = require('../controllers/auth');
+var authentication = require('../controllers/auth');
+var users = require('../controllers/user');
+var schools = require('../controllers/school');
 
-router.post('/register', userAuth.register);
-router.post('/login', userAuth.login);
-router.post('/school_register', userAuth.schoolRegister);
+router.post('/register', authentication.register);
+router.post('/login', authentication.login);
+router.post('/school_register', auth, schools.schoolRegister);
 
-router.get('/get_user/:id', userAuth.getUser);
+router.get('/get_user/:id', users.getUser);
+router.get('/get_users', users.getUsers);
+router.get('/get_schools/:id', schools.getSchoolsByUser);
+
 
 module.exports = router;

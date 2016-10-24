@@ -3,14 +3,28 @@
  */
 
 (function () {
-    schoolService.$inject = ['$http'];
-    function schoolService($http) {
+    schoolService.$inject = ['$http', 'authentication'];
+    function schoolService($http, authentication) {
         this.register = function (school, callback) {
-            return $http.post('/api/school_register', school).then(function (response) {
+            return $http({
+                method: 'POST',
+                url: '/api/school_register',
+                headers: {
+                    authorization: 'Bearer ' + authentication.getToken()
+                },
+                data: school
+            }).then(function (response) {
                 callback(response);
             }, function (response) {
                 callback(response);
             })
+        };
+
+        this.getSchoolsByUser = function (uid) {
+            return $http({
+                method: 'GET',
+                url: '/api/get_schools/' + uid
+            });
         }
     }
 
