@@ -1,0 +1,81 @@
+<div layout="row" layout-align="center center" layout-margin flex>
+    <md-card flex="40" flex-sm="80" flex-xs="90">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Register a Code School</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <form ng-submit="register()" name="registerForm">
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>School Name</label>
+                        <input ng-model="school.schoolName" name="schoolName" required ng-pattern="/^[a-zA-Z0-9_\s]*$/"
+                               ng-minlength="3" ng-maxlength="60">
+                        <div ng-messages="registerForm.schoolName.$error">
+                            <div ng-message="required">This is required.</div>
+                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                Your name cannot contain special characters and must be greater than 3 characters and
+                                less than 60 characters.
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Contact Email</label>
+                        <input ng-model="school.email" type="email" required name="email" ng-pattern="/^.+@.+\..+$/"
+                               ng-minlength="10" ng-maxlength="100">
+                        <div ng-messages="registerForm.email.$error">
+                            <div ng-message="required">This is required.</div>
+                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                Your email must be between 10 and 100 characters long and look like an e-mail address.
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>State</label>
+                        <md-select ng-model="school.state" required name="state">
+                            <md-option ng-repeat="state in states" value="{{state.abbrev}}">
+                                {{state.abbrev}}
+                            </md-option>
+                        </md-select>
+                        <div ng-messages="registerForm.state.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>City</label>
+                        <input ng-model="school.city" name="city" required ng-pattern="/^[a-zA-Z0-9_]*$/"
+                               ng-minlength="3" ng-maxlength="30">
+                        <div ng-messages="registerForm.city.$error">
+                            <div ng-message="required">This is required.</div>
+                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                The city cannot contain special characters and must be greater than 3 characters
+                                and less than 30 characters.
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>School Description</label>
+                        <textarea ng-model="school.description" name="description" md-maxlength="1000" md-minlength="30"
+                                  ng-minlength="30" ng-maxlength="1000" rows="5" required md-select-on-focus></textarea>
+                        <div ng-messages="registerForm.description.$error">
+                            <div ng-message="required">This is required.</div>
+                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                Your description should be at least 30 characters and less than 1000.
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <md-button class="md-raised md-primary" type="submit">Register School</md-button>
+                </md-input-container>
+            </form>
+        </md-card-content>
+    </md-card>
+</div>

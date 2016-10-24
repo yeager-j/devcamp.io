@@ -1,20 +1,199 @@
 <div layout="row" layout-align="center center">
-    <md-card flex="50" flex-sm="80" flex-xs="90">
-        <md-card-title>
-            <md-card-title-text>
-                <span class="md-headline">{{user.username}}</span>
-                <span class="md-subhead">{{user.fullname}}</span>
-                <span class="md-subhead">{{user.email}}</span>
-                <span class="md-subhead">{{user.usertype}}</span>
-            </md-card-title-text>
-            <md-card-title-media>
-                <div class="md-media-md card-media hide-xl hide-lg hide-md">
-                    <img src="http://placekitten.com/200/200">
-                </div>
-                <div class="md-media-lg card-media hide-sm hide-xs">
-                    <img src="http://placekitten.com/200/200">
-                </div>
-            </md-card-title-media>
-        </md-card-title>
-    </md-card>
+    <div flex="50" flex-sm="80" flex-xs="90">
+        <md-content>
+            <md-tabs md-border-bottom md-dynamic-height>
+                <md-tab label="you">
+                    <md-card theme="default">
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">{{user.username}}</span>
+                                <span class="md-subhead">{{user.fullname}}</span>
+                                <span class="md-subhead">{{user.email}}</span>
+                                <span class="md-subhead">{{user.usertype}}</span>
+                            </md-card-title-text>
+                            <md-card-title-media>
+                                <div class="md-media-md card-media hide-xl hide-lg hide-md">
+                                    <img src="http://placekitten.com/200/200">
+                                </div>
+                                <div class="md-media-lg card-media hide-sm hide-xs">
+                                    <img src="http://placekitten.com/200/200">
+                                </div>
+                            </md-card-title-media>
+                        </md-card-title>
+                        <md-toolbar>
+                            <div class="md-toolbar-tools">My Profile</div>
+                        </md-toolbar>
+
+                        <md-content style="height: 54vh;" md-theme="altTheme">
+                            <section>
+                                <md-subheader class="md-primary">Who I Am</md-subheader>
+                                <md-list layout-padding>
+                                    <md-list-item class="md-3-line">
+                                        <div class="md-list-item-text">
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci
+                                                cumque doloribus eligendi magni modi, molestias odio quae recusandae
+                                                voluptatum. Adipisci dolorem ea eaque ex itaque iusto laboriosam
+                                                molestiae quis.
+                                            </p>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci
+                                                cumque doloribus eligendi magni modi, molestias odio quae recusandae
+                                                voluptatum. Adipisci dolorem ea eaque ex itaque iusto laboriosam
+                                                molestiae quis.
+                                            </p>
+                                        </div>
+                                    </md-list-item>
+                                </md-list>
+                            </section>
+                            <section>
+                                <md-subheader class="md-accent">My Goals</md-subheader>
+                                <md-list layout-padding>
+                                    <md-list-item class="md-3-line">
+                                        <div class="md-list-item-text">
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci
+                                                cumque doloribus eligendi magni modi, molestias odio quae recusandae
+                                                voluptatum. Adipisci dolorem ea eaque ex itaque iusto laboriosam
+                                                molestiae quis.
+                                            </p>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci
+                                                cumque doloribus eligendi magni modi, molestias odio quae recusandae
+                                                voluptatum. Adipisci dolorem ea eaque ex itaque iusto laboriosam
+                                                molestiae quis.
+                                            </p>
+                                        </div>
+                                    </md-list-item>
+                                </md-list>
+                            </section>
+                        </md-content>
+                    </md-card>
+                </md-tab>
+                <md-tab label="feed">
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">Hello Post!</span>
+                                <span class="md-subhead">Posted By: Danny</span>
+                            </md-card-title-text>
+                            <md-card-title-media>
+                            </md-card-title-media>
+                        </md-card-title>
+                        <md-card-content>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam architecto, at
+                                excepturi harum magni quisquam recusandae rerum sint soluta voluptatibus! Blanditiis
+                                deleniti labore nisi omnis, praesentium quis voluptas voluptatem? Beatae...</p>
+                            <md-button class="md-primary">Read More</md-button>
+                        </md-card-content>
+                    </md-card>
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">A different post</span>
+                                <span class="md-subhead">Posted By: Danny</span>
+                            </md-card-title-text>
+                            <md-card-title-media>
+                            </md-card-title-media>
+                        </md-card-title>
+                        <md-card-content>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam architecto, at
+                                excepturi harum magni quisquam recusandae rerum sint soluta voluptatibus! Blanditiis
+                                deleniti labore nisi omnis, praesentium quis voluptas voluptatem? Beatae...</p>
+                            <md-button class="md-primary">Read More</md-button>
+                        </md-card-content>
+                    </md-card>
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">Someone help!</span>
+                                <span class="md-subhead">Posted By: Danny</span>
+                            </md-card-title-text>
+                            <md-card-title-media>
+                            </md-card-title-media>
+                        </md-card-title>
+                        <md-card-content>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam architecto, at
+                                excepturi harum magni quisquam recusandae rerum sint soluta voluptatibus! Blanditiis
+                                deleniti labore nisi omnis, praesentium quis voluptas voluptatem? Beatae...</p>
+                            <md-button class="md-primary">Read More</md-button>
+                        </md-card-content>
+                    </md-card>
+                </md-tab>
+                <md-tab label="your posts">
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">Hello Post!</span>
+                                <span class="md-subhead">Posted By: Jackson</span>
+                            </md-card-title-text>
+                            <md-card-title-media>
+                            </md-card-title-media>
+                        </md-card-title>
+                        <md-card-content>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam architecto, at
+                                excepturi harum magni quisquam recusandae rerum sint soluta voluptatibus! Blanditiis
+                                deleniti labore nisi omnis, praesentium quis voluptas voluptatem? Beatae...</p>
+                            <md-button class="md-primary">Read More</md-button>
+                            <md-button class="md-warn">Delete</md-button>
+                        </md-card-content>
+                    </md-card>
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">A different post</span>
+                                <span class="md-subhead">Posted By: Jackson</span>
+                            </md-card-title-text>
+                            <md-card-title-media>
+                            </md-card-title-media>
+                        </md-card-title>
+                        <md-card-content>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam architecto, at
+                                excepturi harum magni quisquam recusandae rerum sint soluta voluptatibus! Blanditiis
+                                deleniti labore nisi omnis, praesentium quis voluptas voluptatem? Beatae...</p>
+                            <md-button class="md-primary">Read More</md-button>
+                            <md-button class="md-warn">Delete</md-button>
+                        </md-card-content>
+                    </md-card>
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">Someone help!</span>
+                                <span class="md-subhead">Posted By: Jackson</span>
+                            </md-card-title-text>
+                            <md-card-title-media>
+                            </md-card-title-media>
+                        </md-card-title>
+                        <md-card-content>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam architecto, at
+                                excepturi harum magni quisquam recusandae rerum sint soluta voluptatibus! Blanditiis
+                                deleniti labore nisi omnis, praesentium quis voluptas voluptatem? Beatae...</p>
+                            <md-button class="md-primary">Read More</md-button>
+                            <md-button class="md-warn">Delete</md-button>
+                        </md-card-content>
+                    </md-card>
+                </md-tab>
+                <md-tab label="your schools">
+                    <md-card ng-repeat="school in schools">
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">{{school.schoolName}}</span>
+                                <span class="md-subhead">Head Instructor: {{school.leadInstructor}}</span>
+                            </md-card-title-text>
+                            <md-card-title-media>
+                            </md-card-title-media>
+                        </md-card-title>
+                        <md-card-content>
+                            {{school.description}}
+                        </md-card-content>
+                        <md-card-actions>
+                            <md-button class="md-primary">Edit</md-button>
+                            <md-button class="md-accent" ng-click="getKey(school._id)">Secret Key</md-button>
+                            <md-button class="md-warn">Delete</md-button>
+                        </md-card-actions>
+                    </md-card>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+    </div>
 </div>

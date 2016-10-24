@@ -21,9 +21,19 @@
                 controller: 'loginCtrl'
             })
 
+            .when('/school/register', {
+                templateUrl: '/school/register/school-register.view.html',
+                controller: 'schoolRegCtrl'
+            })
+
             .when('/profile/:user', {
                 templateUrl: '/profile/profile.view.html',
                 controller: 'profileCtrl'
+            })
+
+            .when('/members', {
+                templateUrl: '/members/members.view.html',
+                controller: 'membersCtrl'
             })
 
             .when('/graphs', {

@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/angular-material/angular-material.min.css">
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/compass/sass/style.css">
 </head>
 <body ng-app="devcamp" ng-controller="mainCtrl">
 
-<div layout="column" layout-fill>
+<div layout="column" layout-fill class="content-wrapper">
     <navigation></navigation>
 
     <md-content flex>
@@ -40,6 +40,8 @@
 <script src="profile/profile.controller.js"></script>
 <script src="graphs/graphs.controller.js"></script>
 <script src="graphs/reusable_chart.js"></script>
+<script src="members/members.controller.js"></script>
+<script src="school/register/school-register.controller.js"></script>
 
 <!--Directives-->
 <script src="common/directives/navigation/navigation.directive.js"></script>
@@ -47,8 +49,10 @@
 
 <!--Services-->
 <script src="common/services/auth.service.js"></script>
+<script src="common/services/school.service.js"></script>
 
 <!--Factories-->
 <script src="common/factories/fetch-user.js"></script>
+<script src="common/factories/fetch-school.js"></script>
 </body>
 </html>

@@ -71,6 +71,10 @@
         this.getUser = function (uid) {
             return $http.get('/api/get_user/' + uid);
         };
+
+        this.getUsers = function () {
+            return $http.get('/api/get_users');
+        }
     }
 
     angular.module('devcamp')

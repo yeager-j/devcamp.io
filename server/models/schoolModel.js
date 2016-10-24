@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var crypto = require('crypto');
 
 var schoolSchema = new mongoose.Schema({
     schoolName: {
@@ -14,11 +15,15 @@ var schoolSchema = new mongoose.Schema({
         required: true
     },
     description: String,
-    motto: String,
+    email: String,
     logo: String,
     faculty: Array,
-    students: Array
+    students: Array,
+    secretKey: String
 });
 
+schoolSchema.methods.generateKey = function () {
+    this.secretKey = crypto.randomBytes(16).toString('hex');
+};
 
 module.exports = mongoose.model('School', schoolSchema);
