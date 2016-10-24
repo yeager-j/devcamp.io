@@ -18,6 +18,7 @@ router.post('/school_register', auth, schools.schoolRegister);
 router.get('/get_user/:id', users.getUser);
 router.get('/get_users', users.getUsers);
 router.get('/get_schools/:id', schools.getSchoolsByUser);
+router.get('/get_school_key/:id', auth, schools.getSecretKey);
 
 
 module.exports = router;

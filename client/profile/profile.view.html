@@ -173,11 +173,25 @@
                         </md-card-content>
                     </md-card>
                 </md-tab>
-                <md-tab label="your school">
-                    <md-content class="md-padding">
-                        <h1 class="md-display-2">Tab Three</h1>
-
-                    </md-content>
+                <md-tab label="your schools">
+                    <md-card ng-repeat="school in schools">
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">{{school.schoolName}}</span>
+                                <span class="md-subhead">Head Instructor: {{school.leadInstructor}}</span>
+                            </md-card-title-text>
+                            <md-card-title-media>
+                            </md-card-title-media>
+                        </md-card-title>
+                        <md-card-content>
+                            {{school.description}}
+                        </md-card-content>
+                        <md-card-actions>
+                            <md-button class="md-primary">Edit</md-button>
+                            <md-button class="md-accent" ng-click="getKey(school._id)">Secret Key</md-button>
+                            <md-button class="md-warn">Delete</md-button>
+                        </md-card-actions>
+                    </md-card>
                 </md-tab>
             </md-tabs>
         </md-content>

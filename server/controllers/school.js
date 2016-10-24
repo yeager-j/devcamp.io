@@ -15,9 +15,11 @@ module.exports.schoolRegister = function (req, res) {
             "message": "All fields required!"
         });
     } else {
-        User.findOne({
+        School.findOne({
             'schoolName': req.body.schoolName
         }, function (err, userInfo) {
+            console.log(userInfo);
+
             if (userInfo) {
                 sendJSONresponse(res, 500, {
                     "message": "This school is already registered!"
@@ -69,6 +71,7 @@ module.exports.schoolRegister = function (req, res) {
                     school.email = req.body.email;
                     school.description = req.body.description;
                     school.faculty = [req.payload._id];
+                    school.generateKey();
                     school.save(function (err) {
                         if (err) {
                             console.log(err);
@@ -98,14 +101,12 @@ module.exports.getSchoolsByUser = function (req, res) {
             message: 'No user provided'
         })
     } else {
-        console.log(req.params.id);
-
-        School.find({
-            faculty: {
-                $in: [req.params.id]
-            }
-        }, function (err, schools) {
+        School.find({$or: [{students: {$in: [req.params.id]}}, {faculty: {$in: [req.params.id]}}]}, function (err, schools) {
             if (schools) {
+                schools.map(function (school) {
+                    school.secretKey = '';
+                });
+
                 sendJSONresponse(res, 200, schools);
             }
 
@@ -117,5 +118,33 @@ module.exports.getSchoolsByUser = function (req, res) {
                 });
             }
         })
+    }
+};
+
+module.exports.getSecretKey = function (req, res) {
+    if (!req.params.id) {
+        sendJSONresponse(res, 400, {
+            message: 'No school provided'
+        })
+    } else {
+        School.findById(req.params.id, function (err, school) {
+            if (school) {
+                if (school.faculty.indexOf(req.payload._id) > -1) {
+                    sendJSONresponse(res, 200, school.secretKey);
+                } else {
+                    sendJSONresponse(res, 401, {
+                        message: "You are not authorized to generate this school's secret key."
+                    })
+                }
+            }
+
+            if (err) {
+                console.error(err);
+
+                sendJSONresponse(res, 500, {
+                    message: 'There was an unexpected error'
+                });
+            }
+        });
     }
 };

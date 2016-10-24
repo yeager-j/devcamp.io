@@ -9,8 +9,17 @@
             })
         }
 
+        function getSecretKey(school, callback) {
+            devSchool.getSecretKey(school).then(function (response) {
+                callback(response);
+            }, function (response) {
+                callback(response);
+            })
+        }
+
         return {
-            fetchSchools: fetchSchools
+            fetchSchools: fetchSchools,
+            getSecretKey: getSecretKey
         }
     }
 

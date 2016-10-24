@@ -25,6 +25,16 @@
                 method: 'GET',
                 url: '/api/get_schools/' + uid
             });
+        };
+
+        this.getSecretKey = function (school) {
+            return $http({
+                method: 'GET',
+                url: '/api/get_school_key/' + school,
+                headers: {
+                    authorization: 'Bearer ' + authentication.getToken()
+                }
+            })
         }
     }
 
