@@ -2,7 +2,7 @@
  * Created by Jackson on 10/12/16.
  */
 (function () {
-    angular.module('devcamp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngAnimate']);
+    angular.module('devcamp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngAnimate', 'd3Module']);
 
     function config($routeProvider, $mdThemingProvider) {
         $routeProvider

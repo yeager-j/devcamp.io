@@ -148,3 +148,25 @@ module.exports.getSecretKey = function (req, res) {
         });
     }
 };
+
+module.exports.studentRegister = function (req, res) {
+    console.log(req.body.secretKey);
+    if (!req.body.secretKey) {
+        sendJSONresponse(res, 400, {
+            message: 'No Key provided'
+        });
+    } else {
+        School.findOne({'secretKey': req.body.secretKey}, function (err, school) {
+            if (school) {
+                school.students.push(req.payload._id);
+                school.save(function(err){
+                    if (err){
+                        console.log(err);
+                    }else{
+                        sendJSONresponse(res, 200, {'message': 'Student Successfully Added!'});
+                    }
+                });
+            }
+        });
+    }
+};
