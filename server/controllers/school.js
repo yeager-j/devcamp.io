@@ -149,6 +149,32 @@ module.exports.getSecretKey = function (req, res) {
     }
 };
 
+module.exports.schoolUpdate = function (req, res) {
+    School.update(
+        { "_id": "580f9a631976731aaf637b3e" },
+        {   $set: {
+                "schoolName": req.body.schoolName,
+                "city": req.body.city,
+                "state": req.body.state,
+                "email": req.body.email,
+                "description": req.body.description
+            }
+        },
+        function(err, data){
+            if (err){
+                console.log(err);
+                sendJSONresponse(res, 400, {
+                    "message": "There was an error!"
+                });
+            }else{
+                sendJSONresponse(res, 200, {
+                    "message": "Information was successfully updated!"
+                });
+            }
+        }
+    )
+};
+
 module.exports.studentRegister = function (req, res) {
     console.log(req.body.secretKey);
     if (!req.body.secretKey) {

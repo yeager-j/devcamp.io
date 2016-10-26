@@ -17,6 +17,7 @@ var schoolSchema = new mongoose.Schema({
     description: String,
     email: String,
     logo: String,
+    languages: Array,
     faculty: Array,
     students: Array,
     secretKey: String
