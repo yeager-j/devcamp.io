@@ -108,33 +108,68 @@ module.exports.createReply = function (req, res){
 //     });
 // };
 
-module.exports.getCategory = function (req, res){
-    var display = [];
-    Category.find({}).exec(function(err, category){
-        for (var i = 0; i < category.length; i++) {
-            display.push({"id": category[i]._id, "title": category[i].title, "forum": []});
-        }
-        sendJSONresponse(res, 200, display);      
+// module.exports.getAll = function (req, res){
+//     var display = [];
+//     Category.find({}).exec(function(err, category){
+//         for (var i = 0; i < category.length; i++) {
+//             display.push({"id": category[i]._id, "title": category[i].title, "forum": []});
+//         }
+//         Forum.find({cat_id: category[i]._id}).exec(function (err, forum){
+//             for (var j = 0; j < display.length; j++) {
+//                 display[j].forum = forum;
+//             }
+//             sendJSONresponse(res, 200, display);      
+//         });
+//     });
+// };
+
+module.exports.getCategories = function (req, res){
+    Category.find({}).populate({path: 'forum', Select: 'title description genesis last_post permissions'}).exec(function(err, category){
+        sendJSONresponse(res, 200, category);      
     });
 };
 
 module.exports.getForums = function (req, res){
-    Forum.find({cat_id: req.params.id}).exec(function (err, forum){
+    Forum.find({cat_id: req.params.id}).populate({path: 'threads', select: 'title created author_id post_content forum_id locked pinned'}).exec(function (err, forum){
         sendJSONresponse(res, 200, forum);      
     });
 };
 
 module.exports.getThreads = function (req, res){
-    Thread.find({forum_id: req.params.id}).exec(function (err, thread){
+    Thread.find({forum_id: req.params.id}).populate({path: 'replies', select: 'created author_id post_content thread_id'}).exec(function (err, thread){
         sendJSONresponse(res, 200, thread);      
     });
 };
 
-module.exports.getReplies = function (req, res){
-    Reply.find({thread_id: req.params.id}).exec(function (err, reply){
-        sendJSONresponse(res, 200, reply);      
-    });
-};
+
+
+
+// Danny's Original Individual Queries, refactored above for Optimum Performance!
+
+
+// module.exports.getCategory = function (req, res){
+//     Category.find({}).exec(function(err, category){
+//         sendJSONresponse(res, 200, category);      
+//     });
+// };
+
+// module.exports.getForums = function (req, res){
+//     Forum.find({cat_id: req.params.id}).exec(function (err, forum){
+//         sendJSONresponse(res, 200, forum);      
+//     });
+// };
+
+// module.exports.getThreads = function (req, res){
+//     Thread.find({forum_id: req.params.id}).exec(function (err, thread){
+//         sendJSONresponse(res, 200, thread);      
+//     });
+// };
+
+// module.exports.getReplies = function (req, res){
+//     Reply.find({thread_id: req.params.id}).exec(function (err, reply){
+//         sendJSONresponse(res, 200, reply);      
+//     });
+// };
 
 
 

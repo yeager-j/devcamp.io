@@ -27,15 +27,14 @@ router.post('/thread_reply', auth, forums.createReply);
 
 router.get('/get_user/:id', users.getUser);
 router.get('/get_users', users.getUsers);
+
 router.get('/get_schools/:id', schools.getSchoolsByUser);
 router.get('/get_school_key/:id', auth, schools.getSecretKey);
-router.get('/category', auth, forums.getCategory);
+
+router.get('/forum_main', auth, forums.getCategories);
 router.get('/forum/:id', auth, forums.getForums);
 router.get('/thread/:id', auth, forums.getThreads);
-router.get('/replies/:id', auth, forums.getReplies);
-
-// router.get('/forums', auth, forums.getAll);
-
+// router.get('/replies/:id', auth, forums.getReplies);
 
 
 module.exports = router;

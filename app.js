@@ -9,10 +9,10 @@ var passport = require('passport');
 require('./server/config/passport');
 require('./server/models/schoolModel');
 require('./server/models/dataModel');
-require('./server/models/categoryModel');
-require('./server/models/forumModel');
-require('./server/models/threadModel');
 require('./server/models/threadReplyModel');
+require('./server/models/threadModel');
+require('./server/models/forumModel');
+require('./server/models/categoryModel');
 
 var routesApi = require('./server/routes/index');
 
