@@ -2,6 +2,7 @@ var passport = require('passport');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var School = mongoose.model('School');
+
 var validate = require('../utilities/validate');
 
 var sendJSONresponse = function (res, status, content) {
