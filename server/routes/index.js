@@ -20,6 +20,7 @@ router.post('/school_update', auth, schools.schoolUpdate);
 router.post('/student_register', auth, schools.studentRegister);
 router.post('/school_data', auth, data.dataInput);
 router.post('/update_user_school', auth, data.dataUpdate);
+
 router.post('/category', auth, forums.createCategory);
 router.post('/forums/:id', auth, forums.createForum);
 router.post('/thread/:id', auth, forums.createThread);
@@ -39,7 +40,9 @@ router.get('/get_school_key/:id', auth, schools.getSecretKey);
 router.get('/forum_main', auth, forums.getCategories);
 router.get('/forum/:id', auth, forums.getForums);
 router.get('/thread/:id', auth, forums.getThreads);
-// router.get('/replies/:id', auth, forums.getReplies);
+
+router.get('/user_threads/:id', auth, forums.getUserThreads);
+router.get('/user_replies/:id', auth, forums.getUserReplies);
 
 
 module.exports = router;
