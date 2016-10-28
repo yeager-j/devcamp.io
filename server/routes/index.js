@@ -21,9 +21,14 @@ router.post('/student_register', auth, schools.studentRegister);
 router.post('/school_data', auth, data.dataInput);
 router.post('/update_user_school', auth, data.dataUpdate);
 router.post('/category', auth, forums.createCategory);
-router.post('/forums', auth, forums.createForum);
-router.post('/thread', auth, forums.createThread);
-router.post('/thread_reply', auth, forums.createReply);
+router.post('/forums/:id', auth, forums.createForum);
+router.post('/thread/:id', auth, forums.createThread);
+router.post('/thread_reply/:id', auth, forums.createReply);
+
+
+router.post('/forum_remove/:id', auth, forums.removeForum);
+router.post('/thread_remove/:id', auth, forums.removeThread);
+router.post('/reply_remove/:id', auth, forums.removeReply);
 
 router.get('/get_user/:id', users.getUser);
 router.get('/get_users', users.getUsers);

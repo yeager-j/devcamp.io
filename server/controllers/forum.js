@@ -35,7 +35,7 @@ module.exports.createForum = function (req, res){
     forum.title = req.body.title;
     forum.description = req.body.description;
     forum.last_post = req.body.last_post;
-    forum.cat_id = req.body.cat_id;
+    forum.cat_id = req.params.id;
     forum.permissions = req.body.permissions;
     forum.save(function(err, document){
         if (err){
@@ -44,10 +44,12 @@ module.exports.createForum = function (req, res){
                 "message": "Server Error Nooooo!!!"
             });
         } else{
-            console.log(document)
-            sendJSONresponse(res, 200, {
-                'message': 'Forum Successfully Added!  Your peers and your community thank you!'
-            });
+            console.log(document);
+            Category.update({_id: req.params.id}, {$push: {forum: forum._id}}).exec(
+                sendJSONresponse(res, 200, {
+                    'message': 'Forum Successfully Added!  Your peers and your community thank you!'
+                })
+            );
         }
     });
 };
@@ -57,7 +59,7 @@ module.exports.createThread = function (req, res){
     thread.title = req.body.title;
     thread.author_id = req.payload._id;
     thread.post_content = req.body.post_content;
-    thread.forum_id = req.body.forum_id;
+    thread.forum_id = req.params.id;
     thread.save(function(err, document){
         if (err){
             console.log(err);
@@ -65,10 +67,12 @@ module.exports.createThread = function (req, res){
                 "message": "Server Error Nooooo!!!"
             });
         } else{
-            console.log(document)
-            sendJSONresponse(res, 200, {
-                'message': 'Thread Successfully Added!  Your entire freaking world thanks you!'
-            });
+            console.log(document);
+            Forum.update({_id: req.params.id}, {$push: {threads: thread._id}}).exec(
+                sendJSONresponse(res, 200, {
+                    'message': 'Thread Successfully Added!  Your entire freaking world thanks you!'
+                })
+            );
         }
     });
 };
@@ -77,7 +81,7 @@ module.exports.createReply = function (req, res){
     var reply = new Reply();
     reply.author_id = req.payload._id;
     reply.post_content = req.body.post_content;
-    reply.thread_id = req.body.thread_id;
+    reply.thread_id = req.params.id;
     reply.save(function(err, document){
         if (err){
             console.log(err);
@@ -85,43 +89,87 @@ module.exports.createReply = function (req, res){
                 "message": "Server Error Nooooo!!!"
             });
         } else{
-            console.log(document)
-            sendJSONresponse(res, 200, {
-                'message': 'Reply Successfully Posted!  The original poster is thrilled!'
-            });
+            console.log(reply._id);
+            Thread.update({_id: req.params.id}, {$push: {replies: reply._id}}).exec(
+                sendJSONresponse(res, 200, {
+                    'message': 'Reply Successfully Posted!  The original poster is thrilled!'
+                })
+            );
         }
     });
 };
 
-// module.exports.getAllForums = function (req, res){
-//     var display = [];
-//     Category.find({}).exec(function(err, category){
-//         for (var i = 0; i < category.length; i++) {
-//             display.push({"id": category[i]._id, "title": category[i].title, "forum": []});
-//             Forum.find({cat_id: category[i]._id}).exec(function (err, forum){
-//                 for (var j = 0; j < display.length; j++) {
-//                     display[j].forum = forum;
-//                 }
-//                 sendJSONresponse(res, 200, display);      
-//             });
-//         }
-//     });
-// };
 
-// module.exports.getAll = function (req, res){
-//     var display = [];
-//     Category.find({}).exec(function(err, category){
-//         for (var i = 0; i < category.length; i++) {
-//             display.push({"id": category[i]._id, "title": category[i].title, "forum": []});
-//         }
-//         Forum.find({cat_id: category[i]._id}).exec(function (err, forum){
-//             for (var j = 0; j < display.length; j++) {
-//                 display[j].forum = forum;
-//             }
-//             sendJSONresponse(res, 200, display);      
-//         });
-//     });
-// };
+module.exports.removeForum = function (req, res){
+    Category.findById(req.body.cat_id).exec(function(err, data){
+        if (err){
+            console.log(err);
+        }else{
+            var index = data.threads.indexOf(req.params.id);
+            if (index > -1){
+                data.threads.splice(index, 1);
+                data.save();
+                Forum.find().remove({_id: req.params.id}).exec(function(err, count){
+                    if (err){
+                        console.log(err);
+                    }else{
+                        sendJSONresponse(res, 200, {
+                            'message': count.result.n + ' forum EXECUTED!!'
+                        });
+                    }
+                });
+            }   
+        }
+    });
+};
+
+module.exports.removeThread = function (req, res){
+    Forum.findById(req.body.forum_id).exec(function(err, data){
+        if (err){
+            console.log(err);
+        }else{
+            var index = data.threads.indexOf(req.params.id);
+            if (index > -1){
+                data.threads.splice(index, 1);
+                data.save();
+                Thread.find().remove({_id: req.params.id}).exec(function(err, count){
+                    if (err){
+                        console.log(err);
+                    }else{
+                        sendJSONresponse(res, 200, {
+                            'message': count.result.n + ' thread EXECUTED!!'
+                        });
+                    }
+                });
+            }   
+        }
+    });
+};
+
+module.exports.removeReply = function (req, res){
+    Thread.findById(req.body.thread_id).exec(function(err, data){
+        if (err){
+            console.log(err);
+        }else{
+            var index = data.threads.indexOf(req.params.id);
+            if (index > -1){
+                data.threads.splice(index, 1);
+                data.save();
+                Reply.find().remove({_id: req.params.id}).exec(function(err, count){
+                    if (err){
+                        console.log(err);
+                    }else{
+                        sendJSONresponse(res, 200, {
+                            'message': count.result.n + ' reply EXECUTED!!'
+                        });
+                    }
+                });
+            }   
+        }
+    });
+};
+
+
 
 module.exports.getCategories = function (req, res){
     Category.find({}).populate({path: 'forum', Select: 'title description genesis last_post permissions'}).exec(function(err, category){
