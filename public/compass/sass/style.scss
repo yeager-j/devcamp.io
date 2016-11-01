@@ -1,5 +1,57 @@
-body {
+.top-wrapper {
+  margin-left: 0;
+  height: 93vh;
+  position: relative;
+  text-align: center;
 
+  .top {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-75%);
+
+    .logo {
+      margin: 20px;
+
+      img {
+        max-width: 90%;
+      }
+    }
+  }
+}
+
+.section-wrapper {
+  &.white {
+    background-color: white;
+    color: #333;
+  }
+
+  &.grey {
+    background-color: #333;
+    color: white;
+  }
+
+  width: 100%;
+  z-index: 2;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+
+  .section {
+    h1 {
+      font-size: 50px;
+    }
+
+    h2 {
+      font-size: 36px;
+    }
+
+    .separator {
+      width: 50%;
+      margin: auto;
+    }
+
+    padding: 100px 10%;
+  }
 }
 
 *:focus {
