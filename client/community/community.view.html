@@ -1,0 +1,13 @@
+<div layout="row" layout-align="center center">
+    <div flex="70" flex-sm="80" flex-xs="90">
+        <category title="{{category.title}}" theme="default" ng-repeat="category in categories | orderBy:'order'">
+            <div ng-repeat="forum in category.forum">
+                <forum-summary title="{{forum.title}}" description="{{forum.description}}" new-threads="false"
+                               link="{{forum._id}}">
+
+                </forum-summary>
+                <md-divider></md-divider>
+            </div>
+        </category>
+    </div>
+</div>

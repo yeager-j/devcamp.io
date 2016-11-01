@@ -11,3 +11,15 @@ body {
   max-height: 100%;
   overflow: hidden;
 }
+
+.text-center {
+  text-align: center;
+}
+
+.img-avatar {
+  margin: auto;
+
+  img {
+    border-radius: 50%;
+  }
+}

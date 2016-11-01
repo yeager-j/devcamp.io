@@ -1,0 +1,21 @@
+<div layout="row" layout-align="center center" class="thread">
+    <md-card flex="80" layout="row" layout-wrap>
+        <md-card-title flex="20" flex-sm="100" flex-xs="100" layout="column" class="text-center">
+            <md-card-title-media>
+                <div class="md-media-lg text-center img-avatar">
+                    <img src="http://placekitten.com/500/500">
+                </div>
+            </md-card-title-media>
+            <md-card-title-text>
+                <span class="md-headline">{{author}}</span>
+                <span class="md-subhead">Administrator</span>
+                <span class="md-subhead">Posts: 35</span>
+                <span class="md-subhead">Reputation: 582</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content flex>
+            <h2>{{title}}</h2>
+            <ng-transclude></ng-transclude>
+        </md-card-content>
+    </md-card>
+</div>

@@ -52,41 +52,18 @@
                         path: '#/school/register'
                     });
 
-                if ($scope.user.rank === 3) {
-                    $scope.userNav.push({
-                        icon: 'dashboard',
-                        location: 'Admin Panel',
-                        path: '#/blogs'
-                    });
-                }
-
                 fetchUser.getCurrentUser(function (user) {
                     $scope.user = user;
+
+                    if ($scope.user.rank === 3) {
+                        $scope.userNav.push({
+                            icon: 'dashboard',
+                            location: 'Admin Panel',
+                            path: '#/blogs'
+                        });
+                    }
+
                     $scope.userNav[0].path = '#/profile/' + $scope.user.username;
-
-                    fetchSchool.fetchSchools($scope.user._id, function (response) {
-                        if (response.data) {
-                            console.log(response);
-
-                            if (Array.isArray(response.data)) {
-                                for (var i = 0; i < response.data.length; i++) {
-                                    var school = response.data[i];
-
-                                    $scope.userNav.push({
-                                        icon: 'school',
-                                        location: 'School - ' + school.schoolName,
-                                        path: '#/school/' + school._id
-                                    });
-                                }
-                            } else {
-                                $scope.userNav.push({
-                                    icon: 'school',
-                                    location: response.data.schoolName,
-                                    path: '#/school/' + response.data._id
-                                })
-                            }
-                        }
-                    });
                 })
             } else {
                 $scope.userNav = [];

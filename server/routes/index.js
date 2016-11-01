@@ -37,9 +37,9 @@ router.get('/get_users', users.getUsers);
 router.get('/get_schools/:id', schools.getSchoolsByUser);
 router.get('/get_school_key/:id', auth, schools.getSecretKey);
 
-router.get('/forum_main', auth, forums.getCategories);
-router.get('/forum/:id', auth, forums.getForums);
-router.get('/thread/:id', auth, forums.getThreads);
+router.get('/forum_main', forums.getCategories);
+router.get('/forum/:id', forums.getForums);
+router.get('/thread/:id', forums.getThreads);
 
 router.get('/user_threads/:id', auth, forums.getUserThreads);
 router.get('/user_replies/:id', auth, forums.getUserReplies);

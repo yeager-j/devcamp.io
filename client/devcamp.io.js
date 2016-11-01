@@ -26,6 +26,11 @@
                 controller: 'schoolRegCtrl'
             })
 
+            .when('/school/:id', {
+                templateUrl: '/school/school.view.html',
+                controller: 'schoolCtrl'
+            })
+
             .when('/profile/:user', {
                 templateUrl: '/profile/profile.view.html',
                 controller: 'profileCtrl'
@@ -39,6 +44,20 @@
             .when('/graphs', {
                 templateUrl: '/graphs/graphs.view.html',
                 controller: 'graphsCtrl'
+            })
+
+            .when('/forums', {
+                templateUrl: '/community/community.view.html',
+                controller: 'communityCtrl'
+            })
+
+            .when('/forums/:id', {
+                templateUrl: '/community/forum-view/forums.view.html',
+                controller: 'forumsCtrl'
+            })
+
+            .when('/thread/:id', {
+                templateUrl: '/community/thread-view/thread.view.html'
             })
 
             .otherwise({

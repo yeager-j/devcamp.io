@@ -71,7 +71,9 @@ module.exports.schoolRegister = function (req, res) {
                     school.state = req.body.state;
                     school.email = req.body.email;
                     school.description = req.body.description;
-                    school.faculty = [req.payload._id];
+                    school.faculty = [
+                        req.payload._id
+                    ];
                     school.generateKey();
                     school.save(function (err) {
                         if (err) {
@@ -122,6 +124,24 @@ module.exports.getSchoolsByUser = function (req, res) {
     }
 };
 
+module.exports.getSchool = function (req, res) {
+    if (!req.params.id) {
+        sendJSONresponse(res, 400, {
+            message: 'No school provided'
+        })
+    } else {
+        School.findById(req.params.id, function (err, school) {
+            if (school) {
+                sendJSONresponse(res, 200, school)
+            } else {
+                sendJSONresponse(res, 404, {
+                    message: 'School not found'
+                })
+            }
+        })
+    }
+};
+
 module.exports.getSecretKey = function (req, res) {
     if (!req.params.id) {
         sendJSONresponse(res, 400, {
@@ -152,8 +172,9 @@ module.exports.getSecretKey = function (req, res) {
 
 module.exports.schoolUpdate = function (req, res) {
     School.update(
-        { "_id": "580f9a631976731aaf637b3e" },
-        {   $set: {
+        {"_id": "580f9a631976731aaf637b3e"},
+        {
+            $set: {
                 "schoolName": req.body.schoolName,
                 "city": req.body.city,
                 "state": req.body.state,
@@ -161,13 +182,13 @@ module.exports.schoolUpdate = function (req, res) {
                 "description": req.body.description
             }
         },
-        function(err, data){
-            if (err){
+        function (err, data) {
+            if (err) {
                 console.log(err);
                 sendJSONresponse(res, 400, {
                     "message": "There was an error!"
                 });
-            }else{
+            } else {
                 sendJSONresponse(res, 200, {
                     "message": "Information was successfully updated!"
                 });
@@ -177,7 +198,7 @@ module.exports.schoolUpdate = function (req, res) {
 };
 
 module.exports.studentRegister = function (req, res) {
-    console.log(req.body.secretKey);
+    console.log(req.body);
     if (!req.body.secretKey) {
         sendJSONresponse(res, 400, {
             message: 'No Key provided'
@@ -186,10 +207,10 @@ module.exports.studentRegister = function (req, res) {
         School.findOne({'secretKey': req.body.secretKey}, function (err, school) {
             if (school) {
                 school.students.push(req.payload._id);
-                school.save(function(err){
-                    if (err){
+                school.save(function (err) {
+                    if (err) {
                         console.log(err);
-                    }else{
+                    } else {
                         sendJSONresponse(res, 200, {'message': 'Student Successfully Added!'});
                     }
                 });

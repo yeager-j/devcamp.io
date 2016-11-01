@@ -2,3 +2,25 @@
 *:focus {
     outline: none;
 }
+
+/* line 9, ../compass/sass/style.scss */
+.content-wrapper {
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+/* line 15, ../compass/sass/style.scss */
+.text-center {
+    text-align: center;
+}
+
+/* line 19, ../compass/sass/style.scss */
+.img-avatar {
+    margin: auto;
+}
+
+/* line 22, ../compass/sass/style.scss */
+.img-avatar img {
+    border-radius: 50%;
+}

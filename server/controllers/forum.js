@@ -22,7 +22,7 @@ module.exports.createCategory = function (req, res){
                 "message": "Server Error Nooooo!!!"
             });
         } else{
-            console.log(document)
+            console.log(document);
             sendJSONresponse(res, 200, {
                 'message': 'Category Successfully Added!  Your community thanks you!'
             });
@@ -188,7 +188,7 @@ module.exports.getCategories = function (req, res){
 };
 
 module.exports.getForums = function (req, res){
-    Forum.find({cat_id: req.params.id}).populate({path: 'threads', select: '-replies'}).exec(function (err, forum){
+    Forum.findById(req.params.id).populate({path: 'threads', select: '-replies'}).exec(function (err, forum) {
         sendJSONresponse(res, 200, forum);      
     });
 };
@@ -226,6 +226,3 @@ module.exports.getThreads = function (req, res){
 //         sendJSONresponse(res, 200, reply);      
 //     });
 // };
-
-
-

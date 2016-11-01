@@ -24,7 +24,7 @@
                             <div class="md-toolbar-tools">My Profile</div>
                         </md-toolbar>
 
-                        <md-content style="height: 54vh;" md-theme="altTheme">
+                        <md-content style="height: 54vh;">
                             <section>
                                 <md-subheader class="md-primary">Who I Am</md-subheader>
                                 <md-list layout-padding>
@@ -187,9 +187,7 @@
                             {{school.description}}
                         </md-card-content>
                         <md-card-actions>
-                            <md-button class="md-primary">Edit</md-button>
-                            <md-button class="md-accent" ng-click="getKey(school._id)">Secret Key</md-button>
-                            <md-button class="md-warn">Delete</md-button>
+                            <md-button class="md-primary" ng-href="#/school/{{school._id}}">View School</md-button>
                         </md-card-actions>
                     </md-card>
                 </md-tab>

@@ -1,0 +1,27 @@
+<div layout="row" layout-align="center center">
+    <div flex="60" flex-sm="80" flex-xs="90">
+        <md-card>
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{school.schoolName}}</span>
+                    <span class="md-subhead">{{school.city}}, {{school.state}}</span>
+                    <span class="md-subhead">{{school.email}}</span>
+                    <span class="md-subhead">
+                        Faculty:
+                        <span ng-repeat="teacher in faculty">
+                            <a href="#/profile/{{teacher.username}}">{{teacher.fullname}}</a>{{$last ? '' : ', '}}
+                        </span>
+                    </span>
+                </md-card-title-text>
+                <md-card-title-media></md-card-title-media>
+            </md-card-title>
+            <md-card-content>
+                <p>{{school.description}}</p>
+            </md-card-content>
+            <md-card-actions>
+                <md-button class="md-warn" ng-click="getKey()">Secret Key</md-button>
+                <md-button class="md-primary">Edit Settings</md-button>
+            </md-card-actions>
+        </md-card>
+    </div>
+</div>

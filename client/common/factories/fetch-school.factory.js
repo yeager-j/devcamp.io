@@ -9,6 +9,14 @@
             })
         }
 
+        function fetchSchool(id, callback) {
+            devSchool.getSchool(id).then(function (response) {
+                callback(response);
+            }, function (response) {
+                callback(response);
+            })
+        }
+
         function getSecretKey(school, callback) {
             devSchool.getSecretKey(school).then(function (response) {
                 callback(response);
@@ -19,7 +27,8 @@
 
         return {
             fetchSchools: fetchSchools,
-            getSecretKey: getSecretKey
+            getSecretKey: getSecretKey,
+            fetchSchool: fetchSchool
         }
     }
 

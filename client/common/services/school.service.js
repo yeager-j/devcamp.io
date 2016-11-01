@@ -27,6 +27,10 @@
             });
         };
 
+        this.getSchool = function (id) {
+            return $http.get('/api/get_school/' + id);
+        };
+
         this.getSecretKey = function (school) {
             return $http({
                 method: 'GET',
