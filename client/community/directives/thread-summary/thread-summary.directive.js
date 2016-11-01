@@ -6,7 +6,8 @@
             scope: {
                 title: '@',
                 author: '@',
-                newPosts: '='
+                newPosts: '=',
+                link: '@'
             }
         }
     }

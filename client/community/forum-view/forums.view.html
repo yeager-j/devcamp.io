@@ -2,7 +2,8 @@
     <div flex="70" flex-sm="80" flex-xs="90">
         <category title="{{forum.title}}" theme="default">
             <div ng-repeat="thread in forum.threads">
-                <thread-summary title="{{thread.title}}" author="Jackson" new-posts="false"></thread-summary>
+                <thread-summary title="{{thread.title}}" author="Jackson" new-posts="false"
+                                link="{{thread._id}}"></thread-summary>
                 <md-divider></md-divider>
             </div>
         </category>
