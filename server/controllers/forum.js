@@ -194,7 +194,7 @@ module.exports.getForums = function (req, res){
 };
 
 module.exports.getThreads = function (req, res){
-    Thread.find({forum_id: req.params.id}).populate({path: 'replies'}).exec(function (err, thread){
+    Thread.findById(req.params.id).populate({path: 'replies'}).exec(function (err, thread){
         sendJSONresponse(res, 200, thread);      
     });
 };

@@ -14,10 +14,17 @@
             })
         }
 
+        function fetchThread(id, callback) {
+            forums.getThreads(id).then(function (response) {
+                console.log(response);
+                callback(response);
+            })
+        }
 
         return {
             fetchMain: fetchMain,
-            fetchForum: fetchForum
+            fetchForum: fetchForum,
+            fetchThread: fetchThread
         }
     }
 

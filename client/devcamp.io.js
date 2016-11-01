@@ -57,7 +57,8 @@
             })
 
             .when('/thread/:id', {
-                templateUrl: '/community/thread-view/thread.view.html'
+                templateUrl: '/community/thread-view/thread.view.html',
+                controller: 'threadsCtrl'
             })
 
             .otherwise({
