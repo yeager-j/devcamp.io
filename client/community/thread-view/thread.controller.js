@@ -1,9 +1,10 @@
 (function () {
-    ThreadsController.$inject = ['$scope', 'fetchForum', 'fetchUser', '$mdToast', '$routeParams'];
-    function ThreadsController($scope, fetchForum, fetchUser, $mdToast, $routeParams) {
+    ThreadsController.$inject = ['$scope', 'fetchForum', 'fetchUser', '$mdToast', '$routeParams', 'authentication'];
+    function ThreadsController($scope, fetchForum, fetchUser, $mdToast, $routeParams, authentication) {
         $scope.thread = {};
         $scope.replies = {};
         $scope.author = {};
+        $scope.isLoggedIn = authentication.isLoggedIn();
 
         fetchForum.fetchThread($routeParams.id, function (response) {
             console.log(response.data);

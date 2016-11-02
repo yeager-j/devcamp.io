@@ -5,7 +5,8 @@
                 <div class="md-toolbar-tools">
                     {{forum.title}}
                     <span flex></span>
-                    <md-button class="md-accent md-raised" ng-href="#/forums/{{forum._id}}/create">New Thread
+                    <md-button class="md-accent md-raised" ng-href="#/forums/{{forum._id}}/create" ng-if="isLoggedIn">
+                        New Thread
                     </md-button>
                 </div>
 

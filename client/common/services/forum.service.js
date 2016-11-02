@@ -17,6 +17,10 @@
             return $http.get('/api/thread/' + id);
         };
 
+        this.getUserThreads = function (id) {
+            return $http.get('/api/user_threads/' + id);
+        };
+
         this.postThread = function (id, thread) {
             return $http({
                 method: 'POST',

@@ -7,7 +7,8 @@
                 title: '@',
                 author: '=',
                 posted: '@',
-                threadId: '@'
+                threadId: '@',
+                canReply: '='
             },
             transclude: true
         }

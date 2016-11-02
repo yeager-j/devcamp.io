@@ -42,8 +42,8 @@ router.get('/forum_main', forums.getCategories);
 router.get('/forum/:id', forums.getForums);
 router.get('/thread/:id', forums.getThreads);
 
-router.get('/user_threads/:id', auth, forums.getUserThreads);
-router.get('/user_replies/:id', auth, forums.getUserReplies);
+router.get('/user_threads/:id', forums.getUserThreads);
+router.get('/user_replies/:id', forums.getUserReplies);
 
 
 module.exports = router;

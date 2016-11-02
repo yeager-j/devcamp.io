@@ -3,10 +3,11 @@
  */
 
 (function () {
-    profileController.$inject = ['$scope', 'fetchUser', 'fetchSchool', '$location', '$routeParams', '$mdDialog'];
-    function profileController($scope, fetchUser, fetchSchool, $location, $routeParams, $mdDialog) {
+    profileController.$inject = ['$scope', 'fetchUser', 'fetchSchool', 'fetchForum', '$location', '$routeParams', '$mdDialog', '$mdToast'];
+    function profileController($scope, fetchUser, fetchSchool, fetchForum, $location, $routeParams, $mdDialog, $mdToast) {
         $scope.user = {};
         $scope.schools = [];
+        $scope.threads = [];
         $scope.currentNavItem = 'page1';
 
         fetchUser.getUser($routeParams.user, function (response) {
@@ -26,6 +27,16 @@
                 }
             });
 
+            fetchForum.fetchUserThreads($scope.user._id, function (response) {
+                if (response.status === 200) {
+                    $scope.threads = response.data;
+                } else {
+                    $mdToast.show(
+                        $mdToast.simple()
+                            .textContent(response.data.message)
+                    )
+                }
+            })
         });
     }
 

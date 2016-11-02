@@ -18,7 +18,8 @@
             <ng-transclude></ng-transclude>
         </md-card-content>
         <md-card-actions layout="row" layout-align="end center">
-            <md-button class="md-accent md-raised" ng-href="#/thread/{{threadId}}/create">Reply</md-button>
+            <md-button class="md-accent md-raised" ng-href="#/thread/{{threadId}}/create" ng-if="canReply">Reply
+            </md-button>
         </md-card-actions>
     </md-card>
 </div>

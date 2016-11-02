@@ -42,11 +42,6 @@
                         path: '#/profile/' + $scope.user.username
                     },
                     {
-                        icon: 'settings',
-                        location: 'Settings',
-                        path: '#/forums'
-                    },
-                    {
                         icon: 'add',
                         location: 'Register a Code School',
                         path: '#/school/register'
