@@ -1,3 +1,7 @@
-<thread title="{{thread.title}}" author="Jackson" posted="Today" thread_id="3">
+<thread title="{{thread.title}}" author="author" posted="Today" thread-id="{{thread._id}}" can-reply="isLoggedIn">
     <p>{{thread.post_content}}</p>
 </thread>
+
+<reply author="reply.author" ng-repeat="reply in replies">
+    <p>{{reply.post_content}}</p>
+</reply>

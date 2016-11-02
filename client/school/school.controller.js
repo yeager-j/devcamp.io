@@ -7,6 +7,7 @@
         fetchSchool.fetchSchool($routeParams.id, function (response) {
             if (response.status === 200) {
                 $scope.school = response.data;
+                console.log(response.data);
 
                 for (var i = 0; i < $scope.school.faculty.length; i++) {
                     var faculty = $scope.school.faculty[i];

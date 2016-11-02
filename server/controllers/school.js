@@ -198,7 +198,8 @@ module.exports.schoolUpdate = function (req, res) {
 };
 
 module.exports.studentRegister = function (req, res) {
-    console.log(req.body);
+    console.log("Ok thank you");
+
     if (!req.body.secretKey) {
         sendJSONresponse(res, 400, {
             message: 'No Key provided'
@@ -206,14 +207,24 @@ module.exports.studentRegister = function (req, res) {
     } else {
         School.findOne({'secretKey': req.body.secretKey}, function (err, school) {
             if (school) {
-                school.students.push(req.payload._id);
-                school.save(function (err) {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        sendJSONresponse(res, 200, {'message': 'Student Successfully Added!'});
-                    }
-                });
+                if (school.students.indexOf(req.payload._id) > -1 || school.faculty.indexOf(req.payload._id) > -1) {
+                    sendJSONresponse(res, 418, {
+                        'message': 'You are already a part of this school.'
+                    })
+                } else {
+                    school.students.push(req.payload._id);
+                    school.save(function (err) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            sendJSONresponse(res, 200, {'message': 'Student Successfully Added!'});
+                        }
+                    });
+                }
+            } else {
+                sendJSONresponse(res, 404, {
+                    'message': 'You have provided a bad secret key. Try again'
+                })
             }
         });
     }

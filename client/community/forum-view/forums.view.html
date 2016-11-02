@@ -1,11 +1,23 @@
 <div layout="row" layout-align="center center">
     <div flex="70" flex-sm="80" flex-xs="90">
-        <category title="{{forum.title}}" theme="default">
-            <div ng-repeat="thread in forum.threads">
-                <thread-summary title="{{thread.title}}" author="Jackson" new-posts="false"
-                                link="{{thread._id}}"></thread-summary>
-                <md-divider></md-divider>
-            </div>
-        </category>
+        <md-card>
+            <md-toolbar class="md-default">
+                <div class="md-toolbar-tools">
+                    {{forum.title}}
+                    <span flex></span>
+                    <md-button class="md-accent md-raised" ng-href="#/forums/{{forum._id}}/create" ng-if="isLoggedIn">
+                        New Thread
+                    </md-button>
+                </div>
+
+            </md-toolbar>
+            <md-list flex>
+                <div ng-repeat="thread in threads | orderBy: '-created'">
+                    <thread-summary title="{{thread.title}}" author="{{thread.author.username}}" new-posts="false"
+                                    link="{{thread._id}}"></thread-summary>
+                    <md-divider></md-divider>
+                </div>
+            </md-list>
+        </md-card>
     </div>
 </div>
