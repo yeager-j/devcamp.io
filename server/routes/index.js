@@ -21,7 +21,7 @@ router.post('/student_register', auth, schools.studentRegister);
 router.post('/school_data', auth, data.dataInput);
 router.post('/update_user_school', auth, data.dataUpdate);
 
-router.post('/edit/:id', auth, users.editUser);
+router.post('/edit', auth, users.editUser);
 
 router.post('/category', auth, forums.createCategory);
 router.post('/forums/:id', auth, forums.createForum);

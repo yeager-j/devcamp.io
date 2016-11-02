@@ -10,6 +10,14 @@
         $scope.threads = [];
         $scope.currentNavItem = 'page1';
 
+        $scope.edit = function editProfile() {
+            $mdDialog.show({
+                templateUrl: 'profile/edit/edit.template.html',
+                controller: 'EditController',
+                clickOutsideToClose: true
+            })
+        };
+
         fetchUser.getUser($routeParams.user, function (response) {
             $scope.user = response;
             fetchSchool.fetchSchools($scope.user._id, function (response) {

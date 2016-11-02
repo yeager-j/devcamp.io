@@ -52,7 +52,7 @@ module.exports.getUsers = function (req, res) {
 };
 
 module.exports.editUser = function (req, res) {
-    User.update({_id: req.params.id}, {
+    User.findOneAndUpdate({_id: req.payload._id}, {
         $set: {
             username: req.body.username,
             fullname: req.body.fullname,
@@ -65,7 +65,9 @@ module.exports.editUser = function (req, res) {
                 "message": "There was an error!"
             });
         } else {
+            console.log(data);
             sendJSONresponse(res, 200, {
+                "token": data.generateJwt(),
                 "message": "Information was successfully updated!"
             });
         }
