@@ -1,3 +1,5 @@
+![alt text](public/images/logo_1.png "Devcamp.io Logo")
+
 # Devcamp.io
 A forum and blog software written in the MEAN Stack.
 
@@ -25,6 +27,20 @@ A forum and blog software written in the MEAN Stack.
 Coding bootcamps are becoming extremely popular. Lots of students are beginning to turn to these programs instead of college because they are cheaper and usually more immersive. This website serves as a community where students and instructors alike can have a real conversation.
 
 The main feature of the website is the forums. Anyone can create a thread and reply to threads. When a thread gets popular, it will be featured on the Blog page. Each user has a profile that contains all of their content, whether they are a (prospective) student or instructor, and their location. Users can follow other users. 
+
+##Contributors
+
+Danny Arango [Github](http://www.github.com/thenew000) [Website](http://www.dannyarango.com)
+
+Jackson Yeager [Github](http://www.github.com/volitiondevelopment) [Website](https://www.volition-dev.com)
+
+## Screenshots
+
+![Toast!](/public/images/screenshots/toast.png "It's Toast!!")
+![Left Navigation](/public/images/screenshots/leftnav.png "Left Navigation!!")
+![Right Navigation](/public/images/screenshots/rightnav.png "Right Navigation!!")
+![A thread and reply](/public/images/screenshots/thread.png "A thread and reply!!")
+
 
 ## Installation
 If you'd like to spin up your own server, follow these instructions:
