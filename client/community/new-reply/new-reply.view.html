@@ -1,0 +1,29 @@
+<div layout="row" layout-align="center center" flex>
+    <md-card flex="60" flex-sm="80" flex-xs="90">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Create a Reply</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <form ng-submit="post()" name="threadForm">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Reply Content</label>
+                    <textarea ng-model="reply.post_content" name="content" md-maxlength="3000" md-minlength="30"
+                              ng-minlength="30" ng-maxlength="3000" rows="8" required md-select-on-focus></textarea>
+                    <div ng-messages="threadForm.content.$error">
+                        <div ng-message="required">This is required.</div>
+                        <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                            Your reply should be at least 30 characters and less than 3000.
+                        </div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <md-button class="md-primary md-raised" type="submit" ng-disabled="threadForm.content.$invalid">
+                        Create Reply
+                    </md-button>
+                </md-input-container>
+            </form>
+        </md-card-content>
+    </md-card>
+</div>

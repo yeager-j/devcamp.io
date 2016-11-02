@@ -50,6 +50,11 @@
                         icon: 'add',
                         location: 'Register a Code School',
                         path: '#/school/register'
+                    },
+                    {
+                        icon: 'school',
+                        location: 'Join a Code School',
+                        path: '#/school/join'
                     });
 
                 fetchUser.getCurrentUser(function (user) {

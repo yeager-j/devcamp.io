@@ -1,0 +1,24 @@
+<div layout="row" layout-align="center center" flex>
+    <md-card flex="40" flex-sm="80" flex-xs="90">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Join a school</span>
+                <span class="md-subhead">Ask your instructor for the secret key assigned to his or her school.</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <form ng-submit="join()" name="joinForm">
+                <md-input-container class="md-block" flex>
+                    <label>Secret Key</label>
+                    <input ng-model="secretKey" name="secretKey" required>
+                    <div ng-messages="joinForm.secretKey.$error">
+                        <div ng-message="required">This is required.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <md-button class="md-primary md-raised" type="submit">Join School</md-button>
+                </md-input-container>
+            </form>
+        </md-card-content>
+    </md-card>
+</div>

@@ -5,9 +5,9 @@
             templateUrl: 'community/directives/thread/thread.template.html',
             scope: {
                 title: '@',
-                author: '@',
+                author: '=',
                 posted: '@',
-                thread_id: '@'
+                threadId: '@'
             },
             transclude: true
         }

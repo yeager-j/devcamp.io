@@ -39,7 +39,22 @@
                     authorization: 'Bearer ' + authentication.getToken()
                 }
             })
-        }
+        };
+
+        this.join = function (secretKey) {
+            console.log("Okay posting");
+
+            return $http({
+                method: 'POST',
+                url: '/api/student_register',
+                data: {
+                    secretKey: secretKey
+                },
+                headers: {
+                    authorization: 'Bearer ' + authentication.getToken()
+                }
+            })
+        };
     }
 
     angular.module('devcamp')

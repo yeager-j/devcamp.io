@@ -81,6 +81,7 @@ module.exports.createReply = function (req, res){
     var reply = new Reply();
     reply.author_id = req.payload._id;
     reply.post_content = req.body.post_content;
+    console.log(req.body.post_content);
     reply.thread_id = req.params.id;
     reply.save(function(err, document){
         if (err){
