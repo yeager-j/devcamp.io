@@ -50,3 +50,25 @@ module.exports.getUsers = function (req, res) {
         sendJSONresponse(res, 200, response);
     })
 };
+
+module.exports.editUser = function (req, res) {
+    User.update({_id: req.params.id}, {
+        $set: {
+            username: req.body.username,
+            fullname: req.body.fullname,
+            email: req.body.email
+        }
+    }, function (err, data){
+        if(err){
+            console.log(err);
+            sendJSONresponse(res, 400, {
+                "message": "There was an error!"
+            });
+        } else {
+            sendJSONresponse(res, 200, {
+                "message": "Information was successfully updated!"
+            });
+        }
+    });
+
+};

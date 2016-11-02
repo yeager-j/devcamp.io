@@ -21,6 +21,8 @@ router.post('/student_register', auth, schools.studentRegister);
 router.post('/school_data', auth, data.dataInput);
 router.post('/update_user_school', auth, data.dataUpdate);
 
+router.post('/edit/:id', auth, users.editUser);
+
 router.post('/category', auth, forums.createCategory);
 router.post('/forums/:id', auth, forums.createForum);
 router.post('/thread/:id', auth, forums.createThread);
@@ -44,6 +46,5 @@ router.get('/thread/:id', forums.getThreads);
 
 router.get('/user_threads/:id', forums.getUserThreads);
 router.get('/user_replies/:id', forums.getUserReplies);
-
 
 module.exports = router;

@@ -172,7 +172,7 @@ module.exports.getSecretKey = function (req, res) {
 
 module.exports.schoolUpdate = function (req, res) {
     School.update(
-        {"_id": "580f9a631976731aaf637b3e"},
+        {"_id": req.body.id},
         {
             $set: {
                 "schoolName": req.body.schoolName,
