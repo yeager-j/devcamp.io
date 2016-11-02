@@ -9,7 +9,7 @@
             <form ng-submit="post()" name="threadForm">
                 <md-input-container class="md-block" flex>
                     <label>Thread Title</label>
-                    <input ng-model="thread.title" name="title" required ng-pattern="/^[a-zA-Z0-9_\s]*$/"
+                    <input ng-model="thread.title" name="title" required ng-pattern="/^[a-zA-Z0-9_\s.!?:]*$/"
                            ng-minlength="3" ng-maxlength="60">
                     <div ng-messages="threadForm.title.$error">
                         <div ng-message="required">This is required.</div>
