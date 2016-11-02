@@ -1,4 +1,4 @@
-![alt text](public/images/logo_1.png "Devcamp.io Logo")
+![Logo](public/images/logo_1.png "Devcamp.io Logo")
 
 # Devcamp.io
 A forum and blog software written in the MEAN Stack.
@@ -36,6 +36,7 @@ Jackson Yeager [Github](http://www.github.com/volitiondevelopment) [Website](htt
 
 ## Screenshots
 
+![Graph!](/public/images/screenshots/graph.png "It's A Graph!!")
 ![Toast!](/public/images/screenshots/toast.png "It's Toast!!")
 ![Left Navigation](/public/images/screenshots/leftnav.png "Left Navigation!!")
 ![Right Navigation](/public/images/screenshots/rightnav.png "Right Navigation!!")
