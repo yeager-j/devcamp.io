@@ -28,20 +28,18 @@ module.exports.createCategory = function (req, res) {
     var category = new Category();
     category.title = req.body.title;
 
-    checkAdmin(req.payload._id, function () {
-        category.save(function (err, document) {
-            if (err) {
-                console.log(err);
-                sendJSONresponse(res, 500, {
-                    "message": "Server Error Nooooo!!!"
-                });
-            } else {
-                console.log(document);
-                sendJSONresponse(res, 200, {
-                    'message': 'Category Successfully Added!  Your community thanks you!'
-                });
-            }
-        });
+    category.save(function (err, document) {
+        if (err) {
+            console.log(err);
+            sendJSONresponse(res, 500, {
+                "message": "Server Error Nooooo!!!"
+            });
+        } else {
+            console.log(document);
+            sendJSONresponse(res, 200, {
+                'message': 'Category Successfully Added!  Your community thanks you!'
+            });
+        }
     });
 };
 
@@ -52,23 +50,21 @@ module.exports.createForum = function (req, res) {
     forum.last_post = req.body.last_post;
     forum.cat_id = req.params.id;
     forum.permissions = req.body.permissions;
-    checkAdmin(req.payload._id, function () {
-        forum.save(function (err, document) {
-            if (err) {
-                console.log(err);
-                sendJSONresponse(res, 500, {
-                    "message": "Server Error Nooooo!!!"
-                });
-            } else {
-                console.log(document);
-                Category.update({_id: req.params.id}, {$push: {forum: forum._id}}).exec(
-                    sendJSONresponse(res, 200, {
-                        'message': 'Forum Successfully Added!  Your peers and your community thank you!'
-                    })
-                );
-            }
-        });
-    })
+    forum.save(function (err, document) {
+        if (err) {
+            console.log(err);
+            sendJSONresponse(res, 500, {
+                "message": "Server Error Nooooo!!!"
+            });
+        } else {
+            console.log(document);
+            Category.update({_id: req.params.id}, {$push: {forum: forum._id}}).exec(
+                sendJSONresponse(res, 200, {
+                    'message': 'Forum Successfully Added!  Your peers and your community thank you!'
+                })
+            );
+        }
+    });
 };
 
 module.exports.createThread = function (req, res) {
