@@ -3,6 +3,13 @@
 # Devcamp.io
 A forum and blog software written in the MEAN Stack.
 
+## Problems Solved
+**Danny**
+
+**Jackson**
+The biggest issue by far was the forums - both from a design standpoint and from a code standpoint. I had to work closely with Danny in order to get the data in the correct format. Another big issue was user authentication. Passport seemed like an appropriate choice since OAuth was overkill for what we had in mind. I decided on JSONWebTokens instead of Sessions. With JWT, you can send data encoded with a secret key. I sent the user's ID and their password hash. When the user needed to perform an action requiring authentication, the token is sent in the header. If the token is valid and the hash matches the hash in the database, we know they are who they say they are. Subsequently, if they change their password, a new token is generated and sent to them. If someone managed to steal their token, that person would lose access immediately.
+
+
 ## Techologies
 - **MongoDB**: MongoDB is used for storing users, threads, replies, blogs, etc. MongoDB is the obvious choice when working with Node.js
 
@@ -20,8 +27,6 @@ A forum and blog software written in the MEAN Stack.
 
 - **D3**: A canvas/SVG framework for JavaScript for easily implementing visual representations of information. We're using it to display information about schools such as hours, attendance, costs, salary upon graduation, and time looking for a job.
 
-- **Ionic**: A wrapper for web languages that allows them to be run as native mobile applications. We will be using Ionic to create an app for users who prefer a mobile experience.
-
 
 ## Concept
 Coding bootcamps are becoming extremely popular. Lots of students are beginning to turn to these programs instead of college because they are cheaper and usually more immersive. This website serves as a community where students and instructors alike can have a real conversation.
@@ -32,7 +37,11 @@ The main feature of the website is the forums. Anyone can create a thread and re
 
 Danny Arango [Github](http://www.github.com/thenew000) [Website](http://www.dannyarango.com)
 
+Responsible for the database, backend, and routing.
+
 Jackson Yeager [Github](http://www.github.com/volitiondevelopment) [Website](https://www.volition-dev.com)
+
+Responsible for authentication, design, and front-end.
 
 ## Screenshots
 
