@@ -5,6 +5,29 @@ A forum and blog software written in the MEAN Stack.
 
 ## Problems Solved
 **Danny**
+My greatest challenge was working with the NoSQL database in a manner that was efficient as well as relational.  I discovered through using the ObjectId property type in my mongoose schema `cat_id: {type: mongoose.Schema.Types.ObjectId, ref:'Category'}` I could embed data in the form of arrays into my response relating one collection of data to another.  This reduced the amount of queries that needed to be made and allowed for a more intuitive organization of the data.  Originally, I would have had to of created two queries to retrieve the data necessary to populate the forums home page:
+``` javascript
+module.exports.getCategory = function (req, res){
+    Category.find({}).exec(function(err, category){
+        sendJSONresponse(res, 200, category);      
+    });
+};
+
+module.exports.getForums = function (req, res){
+    Forum.find({cat_id: req.params.id}).exec(function (err, forum){
+        sendJSONresponse(res, 200, forum);      
+    });
+};```
+
+As you can see this requires one query to get all the different categories and another query PER CATEGORY to populate all the data needed!!  But by using the ObjectId type I am simply and cleanly able to write:
+```javascript
+module.exports.getCategories = function (req, res) {
+    Category.find({}).populate({path: 'forum', select: '-threads'}).exec(function (err, category) {
+        sendJSONresponse(res, 200, category);
+    });
+};
+```
+This gathers all the categories and every forum for each category.  The ObjectId Type is so powerful that if I didn't specify `select: '-threads'` Every forum's threads and their replies would be included in a massive response.
 
 **Jackson**
 The biggest issue by far was the forums - both from a design standpoint and from a code standpoint. I had to work closely with Danny in order to get the data in the correct format. Another big issue was user authentication. Passport seemed like an appropriate choice since OAuth was overkill for what we had in mind. I decided on JSONWebTokens instead of Sessions. With JWT, you can send data encoded with a secret key. I sent the user's ID and their password hash. When the user needed to perform an action requiring authentication, the token is sent in the header. If the token is valid and the hash matches the hash in the database, we know they are who they say they are. Subsequently, if they change their password, a new token is generated and sent to them. If someone managed to steal their token, that person would lose access immediately.
