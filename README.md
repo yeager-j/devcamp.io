@@ -17,7 +17,8 @@ module.exports.getForums = function (req, res){
     Forum.find({cat_id: req.params.id}).exec(function (err, forum){
         sendJSONresponse(res, 200, forum);      
     });
-};```
+};
+```
 
 As you can see this requires one query to get all the different categories and another query PER CATEGORY to populate all the data needed!!  But by using the ObjectId type I am simply and cleanly able to write:
 ```javascript
